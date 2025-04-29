@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru" itemscope itemtype="https://schema.org/Restaurant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Настоящая итальянская пицца — закажи онлайн с доставкой!">
+  <meta name="keywords" content="пицца, итальянская пицца, доставка, заказать пиццу">
+  <meta name="author" content="Pizza Italiano">
+  <title>Pizza Italiano 🍕</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <h1 itemprop="name">🍕 Pizza Italiano</h1>
+    <p>Аутентичная итальянская пицца с доставкой</p>
+  </header>
+
+  <main>
+    <section class="pizza-list" itemprop="hasMenu">
+      <article class="pizza-card" itemscope itemtype="https://schema.org/Product">
+        <h2 itemprop="name">Маргарита</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="Пицца Маргарита" itemprop="image" />
+        <p itemprop="description">Классическая с томатами и моцареллой</p>
+        <span class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="RUB" />
+          <span itemprop="price">450</span> ₽
+        </span>
+        <button onclick="addToCart('Маргарита', 450)">Добавить</button>
+      </article>
+
+      <article class="pizza-card" itemscope itemtype="https://schema.org/Product">
+        <h2 itemprop="name">Пепперони</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595456.png" alt="Пепперони" itemprop="image" />
+        <p itemprop="description">Пикантная с пепперони и сыром</p>
+        <span class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="RUB" />
+          <span itemprop="price">550</span> ₽
+        </span>
+        <button onclick="addToCart('Пепперони', 550)">Добавить</button>
+      </article>
+    </section>
+
+    <section class="cart">
+      <h2>🛒 Корзина</h2>
+      <ul id="cart-items"></ul>
+      <p id="total">Итого: 0 ₽</p>
+      <button onclick="clearCart()" class="clear-btn">Очистить</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Pizza Italiano. Все права защищены.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
