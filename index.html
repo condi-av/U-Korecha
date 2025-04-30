@@ -3,23 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=yes">
     <title>Пицца у Кореша😎</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <div class="notification" id="notification"></div>
+    
     <header class="header">
-        <div class="logo">У Кореша😎</div>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">У Кореша😎</div>
+                <div class="slogan">Настоящая итальянская пицца</div>
+            </div>
+            
+            <div class="header-actions">
+                <div class="phone-container">
+                    <a href="tel:+79301678326" class="phone-link">
+                        <i class="fas fa-phone-alt phone-icon"></i>
+                        +7 (930) 167-83-26
+                    </a>
+                    <button class="call-btn" onclick="callPhone()">
+                        <i class="fas fa-phone"></i> Позвонить
+                    </button>
+                </div>
+                
+                <button class="search-btn" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
     </header>
+
+    <div class="search-container" id="search-container">
+        <input type="text" id="search-input" placeholder="Поиск пиццы или напитков...">
+        <button class="close-search" onclick="toggleSearch()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
 
     <nav class="menu-category">
         <button data-category="pizza">Пицца</button>
         <button data-category="drinks">Напитки</button>
     </nav>
 
-    <div class="product-list" id="product-list">
-        <!-- Товары будут подгружаться здесь -->
-    </div>
+    <div class="product-list" id="product-list"></div>
 
     <button class="cart-btn" onclick="toggleCart()">🛍️ <span id="cart-count">0</span></button>
     <button class="theme-switcher" onclick="toggleTheme()">🌓</button>
