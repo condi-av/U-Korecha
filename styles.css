@@ -51,6 +51,31 @@ body {
     margin: 0 auto;
     padding: 0 1rem;
 }
+.slogan .chudo-pizza {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+}
+
+.slogan .location {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+.phone-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.phone-number {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+}
 
 .logo-container {
     display: flex;
