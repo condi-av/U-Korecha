@@ -295,3 +295,35 @@ async function confirmOrder() {
         showNotification('Ошибка при оформлении заказа. Пожалуйста, попробуйте ещё раз.');
     }
 }
+document.querySelector("#order-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.querySelector("#name").value.trim();
+  const orderDetails = cart.map(item => `${item.name} x${item.quantity}`).join(", ");
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const message = `
+🍕 Новый заказ от ${name}
+🛒 Заказ: ${orderDetails}
+💰 Сумма: ${total} ₽
+  `;
+
+  const telegramBotToken = "8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g";
+  const chatId = "5414933430";
+
+  fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message
+    })
+  }).then(response => {
+    if (response.ok) {
+      alert("Заказ отправлен! Мы свяжемся с вами в Telegram 📲");
+    } else {
+      alert("Ошибка при отправке заказа.");
+    }
+  });
+});
+
