@@ -150,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         message += `\n*Итого:* ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)} ₽`;
 
-        const token = '8195704085:AAHMBHP0g906T86Q0w0wW7cMsCvpFq-yw1g';
-        const chatId = '7699424458';
+        const token = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
+        const chatId = '5414933430';
         
         fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: 'POST',
