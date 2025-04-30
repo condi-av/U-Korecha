@@ -1,5 +1,6 @@
+let cart = [];
+
 document.addEventListener('DOMContentLoaded', function() {
-    let cart = [];
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.getElementById('cart-count');
     const cartTotal = document.getElementById('cart-total-price');
@@ -33,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Функция добавления в корзину
     function addToCart(id, name, price) {
         const existingItem = cart.find(item => item.id === id);
         
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCart();
     }
 
-    // Обновление корзины
     function updateCart() {
         cartItems.innerHTML = '';
         
@@ -94,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
         cartTotal.textContent = `${total} ₽`;
     }
 
-    // Изменение количества
     window.changeQuantity = function(id, delta) {
         const item = cart.find(item => item.id === id);
         if (!item) return;
@@ -109,19 +107,16 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCart();
     };
 
-    // Удаление из корзины
     window.removeFromCart = function(id) {
         cart = cart.filter(item => item.id !== id);
         updateCart();
         showNotification('Товар удален из корзины');
     };
 
-    // Показать/скрыть корзину
     window.toggleCart = function() {
         cartSidebar.classList.toggle('active');
     };
 
-    // Оформление заказа
     window.checkout = function() {
         if (cart.length === 0) {
             showNotification('Корзина пуста');
@@ -139,15 +134,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         message += `\nИтого: ${total} ₽`;
         
-        // В реальном проекте здесь будет отправка на сервер
-        console.log(message);
+        // Здесь должна быть отправка данных на сервер
+        console.log('Заказ:', message);
         showNotification('Заказ оформлен! С вами свяжутся для подтверждения');
         cart = [];
         updateCart();
         toggleCart();
     };
 
-    // Показать уведомление
     function showNotification(text) {
         notification.textContent = text;
         notification.classList.add('show');
