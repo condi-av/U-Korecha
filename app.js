@@ -16,12 +16,12 @@ const products = {
     ]
 };
 
-// DOMContentLoaded
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     document.body.setAttribute('data-theme', currentTheme);
     renderProducts('pizza');
     
-    // Категории
+    // Обработчики для кнопок категорий
     document.querySelectorAll('[data-category]').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('[data-category]').forEach(btn => {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('[data-category="pizza"]').classList.add('active');
 });
 
-// Рендер продуктов
+// Рендер списка продуктов
 function renderProducts(category) {
     const container = document.getElementById('product-list');
     container.innerHTML = products[category].map(product => `
@@ -57,7 +57,7 @@ function renderProducts(category) {
     `).join('');
 }
 
-// Поиск
+// Поиск продуктов
 document.getElementById('search-input').addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm.length < 2) {
@@ -86,7 +86,7 @@ document.getElementById('search-input').addEventListener('input', (e) => {
     `).join('');
 });
 
-// Корзина
+// Функции корзины
 function addToCart(productId) {
     const product = [...products.pizza, ...products.drinks].find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
@@ -151,7 +151,7 @@ function toggleCart() {
     document.getElementById('cart-sidebar').classList.toggle('active');
 }
 
-// Телефон
+// Функции телефона
 function callPhone() {
     if (confirm('Позвонить по номеру +7 (930) 167-83-26?')) {
         const phoneLink = document.createElement('a');
@@ -171,7 +171,7 @@ function callPhone() {
     }
 }
 
-// Поиск
+// Функции поиска
 function toggleSearch() {
     document.getElementById('search-container').classList.toggle('active');
     if (document.getElementById('search-container').classList.contains('active')) {
@@ -190,7 +190,7 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Тема
+// Переключение темы
 function toggleTheme() {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.body.setAttribute('data-theme', currentTheme);
@@ -198,9 +198,50 @@ function toggleTheme() {
 }
 
 // Оформление заказа
-async function checkout() {
+function checkout() {
     if (cart.length === 0) {
         showNotification('Корзина пуста!');
+        return;
+    }
+
+    // Показываем модальное окно оформления
+    document.getElementById('checkout-modal').classList.add('active');
+    
+    // Заполняем сводку заказа
+    const orderSummary = document.getElementById('order-summary');
+    const itemsHtml = cart.map(item => `
+        <div class="order-summary-item">
+            <span>${item.name} × ${item.quantity || 1}</span>
+            <span>${item.price * (item.quantity || 1)} ₽</span>
+        </div>
+    `).join('');
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+    
+    orderSummary.innerHTML = `
+        <h3>Ваш заказ:</h3>
+        ${itemsHtml}
+        <div class="order-summary-total">
+            <span>Итого:</span>
+            <span>${total} ₽</span>
+        </div>
+    `;
+}
+
+function closeCheckoutModal() {
+    document.getElementById('checkout-modal').classList.remove('active');
+}
+
+async function confirmOrder() {
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    const address = document.getElementById('delivery-address').value.trim();
+    const time = document.getElementById('delivery-time').value.trim();
+    const comment = document.getElementById('customer-comment').value.trim();
+    
+    // Валидация обязательных полей
+    if (!name || !phone || !address) {
+        showNotification('Пожалуйста, заполните имя, телефон и адрес');
         return;
     }
 
@@ -209,18 +250,48 @@ async function checkout() {
         `${item.name} - ${item.quantity || 1} × ${item.price} ₽ = ${(item.quantity || 1) * item.price} ₽`
     ).join('%0A');
     
-    const message = `Новый заказ:%0A%0A${itemsText}%0A%0AИтого: ${total} ₽`;
+    // Формируем сообщение для Telegram
+    const message = `
+Новый заказ! 🎉
+%0A%0A
+<b>Контактные данные:</b>
+%0AИмя: ${name}
+%0AТелефон: ${phone}
+%0A%0A
+<b>Доставка:</b>
+%0AАдрес: ${address}
+%0AВремя: ${time || 'Не указано'}
+%0A%0A
+<b>Заказ:</b>
+%0A${itemsText}
+%0A%0A
+<b>Итого:</b> ${total} ₽
+%0A%0A
+<b>Комментарий:</b>
+%0A${comment || 'Нет комментариев'}
+    `.trim();
     
     const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
     const chatId = '7699424458';
     
     try {
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`);
-        showNotification('Заказ оформлен! С вами свяжутся в Telegram');
+        // Отправляем заказ в Telegram
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=HTML`);
+        
+        showNotification('Заказ оформлен! С вами свяжутся для подтверждения');
+        
+        // Очищаем корзину
         cart = [];
         updateCart();
+        closeCheckoutModal();
+        
+        // Очищаем форму
+        document.getElementById('customer-name').value = '';
+        document.getElementById('delivery-address').value = '';
+        document.getElementById('delivery-time').value = '';
+        document.getElementById('customer-comment').value = '';
     } catch (error) {
         console.error('Ошибка при отправке заказа:', error);
-        showNotification('Ошибка при оформлении заказа');
+        showNotification('Ошибка при оформлении заказа. Пожалуйста, попробуйте ещё раз.');
     }
 }
