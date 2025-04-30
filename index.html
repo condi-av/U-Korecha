@@ -8,116 +8,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div class="notification" id="notification"></div>
-    
     <header class="header">
         <div class="header-container">
             <div class="logo-container">
                 <div class="logo">У Кореша😎</div>
                 <div class="slogan">Настоящая итальянская пицца</div>
             </div>
-            
-            <div class="header-actions">
-                <div class="phone-container">
-                    <a href="tel:+79301678326" class="phone-link">
-                        <i class="fas fa-phone-alt phone-icon"></i>
-                        +7 (930) 167-83-26
-                    </a>
-                    <button class="call-btn" onclick="callPhone()">
-                        <i class="fas fa-phone"></i> Позвонить
-                    </button>
-                </div>
-                
-                <button class="search-btn" onclick="toggleSearch()">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
         </div>
     </header>
 
-    <div class="search-container" id="search-container">
-        <input type="text" id="search-input" placeholder="Поиск пиццы или напитков...">
-        <button class="close-search" onclick="toggleSearch()">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-      <main>
-    <section id="pizzas">
-      <h2>Популярные пиццы</h2>
-      <div class="card-container">
-        <div class="card">
-          <div class="icon">🍕</div>
-          <h3>Маргарита</h3>
-          <p>Классическая пицца с томатами и сыром.</p>
-          <ul class="ingredients">
-            <li>Соус из томатов</li><li>Моцарелла</li><li>Базилик</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🌶️</div>
-          <h3>Пепперони</h3>
-          <p>Пикантная пицца с колбасками и сыром.</p>
-          <ul class="ingredients">
-            <li>Пепперони</li><li>Моцарелла</li><li>Соус</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🧀</div>
-          <h3>Четыре сыра</h3>
-          <p>Сырная мечта для настоящих гурманов.</p>
-          <ul class="ingredients">
-            <li>Моцарелла</li><li>Пармезан</li><li>Горгонзола</li><li>Эмменталь</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🌿</div>
-          <h3>Овощная</h3>
-          <p>Полна витаминов и вкуса.</p>
-          <ul class="ingredients">
-            <li>Болгарский перец</li><li>Томаты</li><li>Кабачки</li><li>Базилик</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🥓</div>
-          <h3>Мясная</h3>
-          <p>Для любителей сытных ужинов.</p>
-          <ul class="ingredients">
-            <li>Бекон</li><li>Ветчина</li><li>Салями</li><li>Сыр</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🍄</div>
-          <h3>Грибная</h3>
-          <p>Легкая и ароматная.</p>
-          <ul class="ingredients">
-            <li>Шампиньоны</li><li>Сыр</li><li>Соус</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon">🍗</div>
-          <h3>С курицей</h3>
-          <p>Куриное филе и сливочный соус.</p>
-          <ul class="ingredients">
-            <li>Курица</li><li>Сыр</li><li>Сливки</li><li>Томаты</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <nav class="menu-category">
+        <button data-category="pizza" class="active">Пицца</button>
+        <button data-category="drinks">Напитки</button>
+    </nav>
 
-    <section id="drinks">
-      <h2>Напитки</h2>
-      <div class="card-container">
-        <div class="card"><div class="icon">🥤</div><h3>Кола</h3><p>Классический освежающий вкус.</p></div>
-        <div class="card"><div class="icon">🍹</div><h3>Мохито</h3><p>Безалкогольный мятный напиток.</p></div>
-        <div class="card"><div class="icon">🧃</div><h3>Сок</h3><p>Апельсиновый, яблочный, вишневый.</p></div>
-        <div class="card"><div class="icon">☕</div><h3>Кофе</h3><p>Эспрессо, американо или капучино.</p></div>
-        <div class="card"><div class="icon">🫖</div><h3>Чай</h3><p>Черный, зеленый или травяной.</p></div>
-      </div>
-    </section>
-  </main>
+    <div class="product-list" id="product-list">
+        <!-- Пиццы -->
+        <div class="product-card">
+            <div class="product-header">
+                <div class="product-icon" style="color: #E74C3C">
+                    <i class="fas fa-pizza-slice"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Маргарита</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★☆ 4.7</div>
+                    <div class="price">450 ₽</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                Классическая итальянская пицца с томатным соусом, моцареллой, свежим базиликом и оливковым маслом. Тонкое тесто и насыщенный вкус.
+            </div>
+            <button class="add-to-cart">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
 
     <nav class="menu-category">
         <button data-category="pizza">Пицца</button>
