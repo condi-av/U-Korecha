@@ -52,50 +52,66 @@
 
     <div class="product-list" id="product-list"></div>
 
-    <button class="cart-btn" onclick="toggleCart()">🛍️ <span id="cart-count">0</span></button>
-    <button class="theme-switcher" onclick="toggleTheme()">🌓</button>
+    <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </button>
+    <button class="theme-switcher" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <div class="cart-sidebar" id="cart-sidebar">
-        <h2>Корзина</h2>
-        <div id="cart-items"></div>
-        <button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+        <div class="cart-header">
+            <h2>Ваша корзина</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-content" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cart-total-price">0 ₽</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-paper-plane"></i> Оформить заказ
+            </button>
+        </div>
     </div>
-    <!-- Добавить перед закрывающим тегом body -->
-<div class="modal-overlay" id="checkout-modal">
-  <div class="modal">
-    <button class="close-modal" onclick="closeCheckoutModal()">&times;</button>
-    <h2>Оформление заказа</h2>
-    
-    <div class="form-group">
-      <label for="customer-name">Ваше имя:</label>
-      <input type="text" id="customer-name" placeholder="Иван Иванов">
+
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal">
+            <button class="close-modal" onclick="closeCheckoutModal()">&times;</button>
+            <h2>Оформление заказа</h2>
+            
+            <div class="form-group">
+                <label for="customer-name">Ваше имя:</label>
+                <input type="text" id="customer-name" placeholder="Иван Иванов" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="customer-phone">Телефон:</label>
+                <input type="tel" id="customer-phone" placeholder="+7 (900) 123-45-67" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-address">Адрес доставки:</label>
+                <input type="text" id="delivery-address" placeholder="ул. Примерная, д. 1, кв. 2" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-time">Время доставки:</label>
+                <input type="text" id="delivery-time" placeholder="Как можно скорее">
+            </div>
+            
+            <div class="form-group">
+                <label for="customer-comment">Комментарий:</label>
+                <textarea id="customer-comment" placeholder="Дополнительные пожелания"></textarea>
+            </div>
+            
+            <div id="order-summary"></div>
+            
+            <button class="confirm-order-btn" onclick="confirmOrder()">Подтвердить заказ</button>
+        </div>
     </div>
-    
-    <div class="form-group">
-      <label for="customer-phone">Телефон:</label>
-      <input type="tel" id="customer-phone" placeholder="+7 (900) 123-45-67" value="+7 (930) 167-83-26">
-    </div>
-    
-    <div class="form-group">
-      <label for="delivery-address">Адрес доставки:</label>
-      <input type="text" id="delivery-address" placeholder="ул. Примерная, д. 1, кв. 2">
-    </div>
-    
-    <div class="form-group">
-      <label for="delivery-time">Время доставки:</label>
-      <input type="text" id="delivery-time" placeholder="Как можно скорее">
-    </div>
-    
-    <div class="form-group">
-      <label for="customer-comment">Комментарий:</label>
-      <textarea id="customer-comment" placeholder="Дополнительные пожелания"></textarea>
-    </div>
-    
-    <div id="order-summary"></div>
-    
-    <button class="confirm-order-btn" onclick="confirmOrder()">Подтвердить заказ</button>
-  </div>
-</div>
 
     <script src="app.js"></script>
 </body>
