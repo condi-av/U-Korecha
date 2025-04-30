@@ -1,0 +1,21 @@
+{
+  "name": "Пицца у Кореша",
+  "short_name": "КорешПицца",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#E74C3C",
+  "theme_color": "#E74C3C",
+  "description": "Лучшая пицца в городе! Доставка и самовывоз.",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
