@@ -151,3 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 });
+
+document.getElementById('theme-toggle').addEventListener('click', function() {
+    const body = document.body;
+    body.getAttribute('data-theme') === 'dark' 
+        ? body.removeAttribute('data-theme') 
+        : body.setAttribute('data-theme', 'dark');
+});
