@@ -117,74 +117,65 @@ document.addEventListener('DOMContentLoaded', function() {
         cartSidebar.classList.toggle('active');
     };
 
-window.checkout = function() {
-    if (cart.length === 0) {
-        showNotification('Корзина пуста');
-        return;
-    }
-    document.getElementById('order-modal').style.display = 'block';
-};
-
-function closeModal() {
-    document.getElementById('order-modal').style.display = 'none';
-}
-
-function submitOrder(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const comment = document.getElementById('comment').value;
-    
-    // Формирование сообщения
-    let message = `📦 *Новый заказ!*\n\n`;
-    message += `👤 *ФИО:* ${name}\n`;
-    message += `📱 *Телефон:* ${phone}\n`;
-    message += `🏠 *Адрес:* ${address}\n`;
-    message += `💬 *Комментарий:* ${comment || '—'}\n\n`;
-    message += `🍕 *Заказ:*\n`;
-    
-    cart.forEach(item => {
-        message += `- ${item.name} (${item.quantity} × ${item.price} ₽) = ${item.quantity * item.price} ₽\n`;
-    });
-    
-    message += `\n*Итого:* ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0} ₽`;
-
-    // Отправка в Telegram
-    const token = '8195704085:AAHMBHP0g906T86Q0w0wW7cMsCvpFq-yw1g';
-    const chatId = '7699424458';
-    
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: 'Markdown'
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            showNotification('Заказ успешно отправлен!');
-            cart = [];
-            updateCart();
-            closeModal();
-            toggleCart();
-        } else {
-            showNotification('Ошибка отправки заказа');
+    window.checkout = function() {
+        if (cart.length === 0) {
+            showNotification('Корзина пуста');
+            return;
         }
-    })
-    .catch(() => showNotification('Ошибка соединения'));
-  }  
-   // Здесь должна быть отправка данных на сервер
-        console.log('Заказ:', message);
-        showNotification('Заказ оформлен! С вами свяжутся для подтверждения');
-        cart = [];
-        updateCart();
-        toggleCart();
+        document.getElementById('order-modal').style.display = 'block';
+    };
+
+    window.closeModal = function() {
+        document.getElementById('order-modal').style.display = 'none';
+    };
+
+    window.submitOrder = function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const comment = document.getElementById('comment').value;
+        
+        let message = `📦 *Новый заказ!*\n\n`;
+        message += `👤 *ФИО:* ${name}\n`;
+        message += `📱 *Телефон:* ${phone}\n`;
+        message += `🏠 *Адрес:* ${address}\n`;
+        message += `💬 *Комментарий:* ${comment || '—'}\n\n`;
+        message += `🍕 *Заказ:*\n`;
+        
+        cart.forEach(item => {
+            message += `- ${item.name} (${item.quantity} × ${item.price} ₽) = ${item.quantity * item.price} ₽\n`;
+        });
+        
+        message += `\n*Итого:* ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)} ₽`;
+
+        const token = '8195704085:AAHMBHP0g906T86Q0w0wW7cMsCvpFq-yw1g';
+        const chatId = '7699424458';
+        
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                showNotification('Заказ успешно отправлен!');
+                cart = [];
+                updateCart();
+                closeModal();
+                toggleCart();
+            } else {
+                showNotification('Ошибка отправки заказа');
+            }
+        })
+        .catch(() => showNotification('Ошибка соединения'));
     };
 
     function showNotification(text) {
@@ -197,17 +188,16 @@ function submitOrder(event) {
     }
 });
 
-// Переключение темы + смена иконки
+// Переключение темы
 document.getElementById('theme-toggle').addEventListener('click', function() {
     const body = document.body;
     const themeIcon = this.querySelector('i');
     
-    // Переключаем тему
     if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
-        themeIcon.classList.replace('fa-sun', 'fa-moon'); // Меняем иконку на луну
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
     } else {
         body.setAttribute('data-theme', 'dark');
-        themeIcon.classList.replace('fa-moon', 'fa-sun'); // Меняем иконку на солнце
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 });
