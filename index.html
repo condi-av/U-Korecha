@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пицца у Кореша😎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">У Кореша😎</div>
+    </header>
+
+    <nav class="menu-category">
+        <button data-category="pizza">Пицца</button>
+        <button data-category="drinks">Напитки</button>
+    </nav>
+
+    <div class="product-list" id="product-list">
+        <!-- Товары будут подгружаться здесь -->
+    </div>
+
+    <button class="cart-btn" onclick="toggleCart()">🛍️ <span id="cart-count">0</span></button>
+    <button class="theme-switcher" onclick="toggleTheme()">🌓</button>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <h2>Корзина</h2>
+        <div id="cart-items"></div>
+        <button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
