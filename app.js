@@ -152,9 +152,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Переключение темы + смена иконки
 document.getElementById('theme-toggle').addEventListener('click', function() {
     const body = document.body;
-    body.getAttribute('data-theme') === 'dark' 
-        ? body.removeAttribute('data-theme') 
-        : body.setAttribute('data-theme', 'dark');
+    const themeIcon = this.querySelector('i');
+    
+    // Переключаем тему
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.classList.replace('fa-sun', 'fa-moon'); // Меняем иконку на луну
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun'); // Меняем иконку на солнце
+    }
 });
