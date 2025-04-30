@@ -3,16 +3,102 @@ let currentTheme = localStorage.getItem('theme') || 'light';
 
 const products = {
     pizza: [
-        {id: 1, name: 'Маргарита', price: 450, icon: 'fa-solid fa-pizza-slice', iconColor: '#E74C3C', rating: 4.5, popular: true},
-        {id: 2, name: 'Пепперони', price: 550, icon: 'fa-solid fa-bacon', iconColor: '#C0392B', rating: 4.8, popular: true},
-        {id: 3, name: '4 Сыра', price: 580, icon: 'fa-solid fa-cheese', iconColor: '#F1C40F', rating: 4.7},
-        {id: 4, name: 'Гавайская', price: 520, icon: 'fa-solid fa-pineapple', iconColor: '#2ECC71', rating: 4.2},
+        {
+            id: 1, 
+            name: 'Маргарита', 
+            price: 450, 
+            icon: 'fa-solid fa-pizza-slice', 
+            iconColor: '#E74C3C', 
+            rating: 4.7,
+            popular: true,
+            ingredients: 'Томатный соус, моцарелла, свежий базилик, оливковое масло'
+        },
+        {
+            id: 2, 
+            name: 'Пепперони', 
+            price: 550, 
+            icon: 'fa-solid fa-bacon', 
+            iconColor: '#C0392B', 
+            rating: 4.9,
+            popular: true,
+            ingredients: 'Томатный соус, моцарелла, пепперони, орегано'
+        },
+        {
+            id: 3, 
+            name: '4 Сыра', 
+            price: 580, 
+            icon: 'fa-solid fa-cheese', 
+            iconColor: '#F1C40F', 
+            rating: 4.6,
+            ingredients: 'Сливочный соус, моцарелла, горгонзола, пармезан, эдам'
+        },
+        {
+            id: 4, 
+            name: 'Гавайская', 
+            price: 520, 
+            icon: 'fa-solid fa-pineapple', 
+            iconColor: '#2ECC71', 
+            rating: 4.2,
+            ingredients: 'Томатный соус, моцарелла, курица, ананасы, сладкий перец'
+        },
+        {
+            id: 9,
+            name: 'Карбонара',
+            price: 570,
+            icon: 'fa-solid fa-bacon',
+            iconColor: '#E67E22',
+            rating: 4.5,
+            ingredients: 'Сливочный соус, моцарелла, бекон, яйцо, пармезан, чеснок'
+        }
     ],
     drinks: [
-        {id: 5, name: 'Кола', price: 120, icon: 'fa-solid fa-bottle-water', iconColor: '#3498DB', rating: 4.0},
-        {id: 6, name: 'Лимонад', price: 100, icon: 'fa-solid fa-glass-water', iconColor: '#1ABC9C', rating: 4.3},
-        {id: 7, name: 'Чай', price: 80, icon: 'fa-solid fa-mug-hot', iconColor: '#E67E22', rating: 4.1},
-        {id: 8, name: 'Кофе', price: 120, icon: 'fa-solid fa-coffee', iconColor: '#8B4513', rating: 4.6},
+        {
+            id: 5, 
+            name: 'Кола', 
+            price: 120, 
+            icon: 'fa-solid fa-bottle-water', 
+            iconColor: '#3498DB', 
+            rating: 4.0,
+            volume: '0.5л'
+        },
+        {
+            id: 6, 
+            name: 'Лимонад', 
+            price: 100, 
+            icon: 'fa-solid fa-glass-water', 
+            iconColor: '#1ABC9C', 
+            rating: 4.3,
+            volume: '0.5л',
+            ingredients: 'Натуральный лимонный сок, мята, лайм'
+        },
+        {
+            id: 7, 
+            name: 'Чай', 
+            price: 80, 
+            icon: 'fa-solid fa-mug-hot', 
+            iconColor: '#E67E22', 
+            rating: 4.1,
+            volume: '0.3л'
+        },
+        {
+            id: 8, 
+            name: 'Кофе', 
+            price: 120, 
+            icon: 'fa-solid fa-coffee', 
+            iconColor: '#8B4513', 
+            rating: 4.6,
+            volume: '0.2л'
+        },
+        {
+            id: 10,
+            name: 'Морс',
+            price: 90,
+            icon: 'fa-solid fa-glass-water',
+            iconColor: '#9B59B6',
+            rating: 4.4,
+            volume: '0.4л',
+            ingredients: 'Ягодный микс, мёд, мята'
+        }
     ]
 };
 
@@ -46,12 +132,18 @@ function renderProducts(category) {
                 <i class="${product.icon}"></i>
             </div>
             <div class="product-info">
-                <h3>${product.name} ${product.popular ? '<span class="popular-badge">🔥</span>' : ''}</h3>
+                <div class="product-title">
+                    <h3>${product.name}</h3>
+                    ${product.popular ? '<span class="popular-badge">🔥</span>' : ''}
+                </div>
                 <div class="rating">
                     ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))} ${product.rating}
                 </div>
-                <p>${product.price} ₽</p>
-                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">В корзину</button>
+                <p>${product.price} ₽ ${product.volume ? `· ${product.volume}` : ''}</p>
+                <p class="product-ingredients">${product.ingredients || ''}</p>
+                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+                    <i class="fas fa-plus"></i> В корзину
+                </button>
             </div>
         </div>
     `).join('');
@@ -77,10 +169,13 @@ document.getElementById('search-input').addEventListener('input', (e) => {
             <div class="product-icon" style="color: ${product.iconColor}">
                 <i class="${product.icon}"></i>
             </div>
-            <div>
+            <div class="product-info">
                 <h3>${product.name}</h3>
-                <p>${product.price} ₽</p>
-                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">В корзину</button>
+                <p>${product.price} ₽ ${product.volume ? `· ${product.volume}` : ''}</p>
+                <p class="product-ingredients">${product.ingredients || ''}</p>
+                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+                    <i class="fas fa-plus"></i> В корзину
+                </button>
             </div>
         </div>
     `).join('');
@@ -126,25 +221,29 @@ function changeQuantity(productId, delta) {
 
 function updateCart() {
     const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    document.getElementById('cart-count').textContent = count;
-    
-    document.getElementById('cart-items').innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <div>
-                <h4>${item.name}</h4>
-                <p>${item.price} ₽ × ${item.quantity || 1} = ${item.price * (item.quantity || 1)} ₽</p>
-            </div>
-            <div class="cart-item-controls">
-                <button onclick="event.stopPropagation(); changeQuantity(${item.id}, -1)">-</button>
-                <span>${item.quantity || 1}</span>
-                <button onclick="event.stopPropagation(); changeQuantity(${item.id}, 1)">+</button>
-                <button onclick="event.stopPropagation(); removeFromCart(${item.id})">×</button>
-            </div>
-        </div>
-    `).join('');
-    
     const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-    document.querySelector('.checkout-btn').innerHTML = `Оформить заказ (${total} ₽)`;
+    
+    document.getElementById('cart-count').textContent = count;
+    document.getElementById('cart-total-price').textContent = `${total} ₽`;
+    
+    document.getElementById('cart-items').innerHTML = cart.length > 0 
+        ? cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <span class="cart-item-price">${item.price * (item.quantity || 1)} ₽</span>
+                </div>
+                ${item.ingredients ? `<p class="cart-item-ingredients">${item.ingredients}</p>` : ''}
+                ${item.volume ? `<p class="cart-item-ingredients">${item.volume}</p>` : ''}
+                <div class="cart-item-controls">
+                    <button onclick="event.stopPropagation(); changeQuantity(${item.id}, -1)">−</button>
+                    <span>${item.quantity || 1}</span>
+                    <button onclick="event.stopPropagation(); changeQuantity(${item.id}, 1)">+</button>
+                    <button onclick="event.stopPropagation(); removeFromCart(${item.id})">Удалить</button>
+                </div>
+            </div>
+        `).join('')
+        : '<div class="empty-cart">Корзина пуста</div>';
 }
 
 function toggleCart() {
@@ -195,6 +294,9 @@ function toggleTheme() {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.body.setAttribute('data-theme', currentTheme);
     localStorage.setItem('theme', currentTheme);
+    
+    const themeIcon = document.querySelector('.theme-switcher i');
+    themeIcon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
 }
 
 // Оформление заказа
@@ -247,69 +349,32 @@ async function confirmOrder() {
 
     const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
     const itemsText = cart.map(item => 
-        `${item.name} - ${item.quantity || 1} × ${item.price} ₽ = ${(item.quantity || 1) * item.price} ₽`
+        `${item.name} (${item.quantity || 1} шт.) - ${item.price * (item.quantity || 1)} ₽`
     ).join('%0A');
     
     // Формируем сообщение для Telegram
     const message = `
-Новый заказ! 🎉
+<b>🍕 Новый заказ!</b>
 %0A%0A
-<b>Контактные данные:</b>
-%0AИмя: ${name}
-%0AТелефон: ${phone}
+<b>👤 Контактные данные:</b>
+%0A├ Имя: ${name}
+%0A└ Телефон: ${phone}
 %0A%0A
-<b>Доставка:</b>
-%0AАдрес: ${address}
-%0AВремя: ${time || 'Не указано'}
+<b>🚚 Доставка:</b>
+%0A├ Адрес: ${address}
+%0A└ Время: ${time || 'Как можно скорее'}
 %0A%0A
-<b>Заказ:</b>
+<b>📦 Состав заказа:</b>
 %0A${itemsText}
 %0A%0A
-<b>Итого:</b> ${total} ₽
+<b>💵 Итого:</b> ${total} ₽
 %0A%0A
-<b>Комментарий:</b>
+<b>📝 Комментарий:</b>
 %0A${comment || 'Нет комментариев'}
     `.trim();
     
-    const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
-    const chatId = '7699424458';
-    
-    try {
-        // Отправляем заказ в Telegram
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=HTML`);
-        
-        showNotification('Заказ оформлен! С вами свяжутся для подтверждения');
-        
-        // Очищаем корзину
-        cart = [];
-        updateCart();
-        closeCheckoutModal();
-        
-        // Очищаем форму
-        document.getElementById('customer-name').value = '';
-        document.getElementById('delivery-address').value = '';
-        document.getElementById('delivery-time').value = '';
-        document.getElementById('customer-comment').value = '';
-    } catch (error) {
-        console.error('Ошибка при отправке заказа:', error);
-        showNotification('Ошибка при оформлении заказа. Пожалуйста, попробуйте ещё раз.');
-    }
-}
-document.querySelector("#order-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const name = document.querySelector("#name").value.trim();
-  const orderDetails = cart.map(item => `${item.name} x${item.quantity}`).join(", ");
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-  const message = `
-🍕 Новый заказ от ${name}
-🛒 Заказ: ${orderDetails}
-💰 Сумма: ${total} ₽
-  `;
-
-  const telegramBotToken = "8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g";
-  const chatId = "5414933430";
+    const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g";
+  const chatId = "7699424458";
 
   fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
     method: "POST",
