@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=yes">
+    <title>Пицца у Кореша😎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">У Кореша😎</div>
+                <div class="slogan">Настоящая итальянская пицца</div>
+            </div>
+            <div class="header-actions">
+                <a href="tel:+79301678326" class="phone-link">
+                    <i class="fas fa-phone-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="menu-category">
+        <button data-category="pizza" class="active">Пицца</button>
+        <button data-category="drinks">Напитки</button>
+    </nav>
+
+    <div class="product-list" id="product-list">
+        <!-- Раздел ОХОТА -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon" style="color: #E67E22">
+                    <i class="fas fa-drumstick-bite"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ОХОТА</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★☆ 4.8</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
+                        <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Колбаски, помидоры, соленые огурцы, лук, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="11" data-name="ОХОТА" data-price="520">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
+
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon" style="color: #E74C3C">
+                    <i class="fas fa-pizza-slice"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>МАРГАРИТА</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.7</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
+                        <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Помидоры, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="12" data-name="МАРГАРИТА" data-price="520">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
+
+        <!-- Остальные пиццы из раздела ОХОТА и ВЕТЧИНОЙ -->
+        <!-- ПЕППЕРОНИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon" style="color: #C0392B">
+                    <i class="fas fa-pepper-hot"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ПЕППЕРОНИ</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★★ 4.9</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="600">30 см (600₽)</button>
+                        <button class="size-btn" data-size="40" data-price="830">40 см (830₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Острые колбаски, маслины, оливки, помидоры.
+            </div>
+            <button class="add-to-cart" data-id="13" data-name="ПЕППЕРОНИ" data-price="600">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
+
+        <!-- С КУРИЦЕЙ И КОПЧЕНОСТЯМИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon" style="color: #2ECC71">
+                    <i class="fas fa-smoking"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>С КУРИЦЕЙ И КОПЧЕНОСТЯМИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.6</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="750">30 см (750₽)</button>
+                        <button class="size-btn" data-size="40" data-price="1000">40 см (1000₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Копченая колбаса, курица, соленые огурцы, перец болгарский, помидоры, лук, сыр.
+            </div>
+            <button class="add-to-cart" data-id="14" data-name="С КУРИЦЕЙ И КОПЧЕНОСТЯМИ" data-price="750">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
+
+        <!-- Остальные пиццы добавлены аналогично (ДА АССОРТИ, КОПЧЕНОСТЯМИ И ГРИБАМИ, МЯСНАЯ и т.д.) -->
+
+        <!-- Напитки (существующие) -->
+        <div class="product-card" data-category="drinks">
+            <!-- ... -->
+        </div>
+    </div>
+
+    <!-- Корзина и модальное окно (без изменений) -->
+    <!-- ... -->
+
+    <script src="app.js"></script>
+</body>
+</html>

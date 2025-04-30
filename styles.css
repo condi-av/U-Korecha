@@ -1,0 +1,22 @@
+/* Добавлено в конец файла */
+.size-selector {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.size-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.size-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
