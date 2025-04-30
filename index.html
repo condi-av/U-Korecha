@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Итальянская пиццерия 'У Витька' – закажите вкуснейшую пиццу онлайн!" />
+  <meta name="keywords" content="пицца, доставка, итальянская пицца, У Витька" />
+  <meta name="author" content="У Витька" />
+  <title>У Витька😎 – Настоящая итальянская пицца</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body class="light-theme">
+  <header>
+    <div class="container">
+      <h1 class="logo">У Витька😎</h1>
+      <button id="theme-toggle">🌙</button>
+      <nav id="burger-menu">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon">☰</label>
+        <ul class="menu">
+          <li><a href="#pizza">Пицца</a></li>
+          <li><a href="#drinks">Напитки</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="pizza" class="products">
+      <h2>Пицца</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Маргарита</h3>
+          <p>Томатный соус, моцарелла, базилик</p>
+          <label>Размер:
+            <select>
+              <option>25 см</option>
+              <option>30 см</option>
+              <option>35 см</option>
+            </select>
+          </label>
+          <button>Заказать</button>
+        </div>
+        <div class="card">
+          <h3>Пепперони</h3>
+          <p>Томатный соус, моцарелла, пепперони</p>
+          <label>Размер:
+            <select>
+              <option>25 см</option>
+              <option>30 см</option>
+              <option>35 см</option>
+            </select>
+          </label>
+          <button>Заказать</button>
+        </div>
+        <div class="card">
+          <h3>Сырная</h3>
+          <p>Моцарелла, чеддер, дорблю, пармезан</p>
+          <label>Размер:
+            <select>
+              <option>25 см</option>
+              <option>30 см</option>
+              <option>35 см</option>
+            </select>
+          </label>
+          <button>Заказать</button>
+        </div>
+        <div class="card">
+          <h3>Ассорти</h3>
+          <p>Пепперони, грибы, болгарский перец, моцарелла</p>
+          <label>Размер:
+            <select>
+              <option>25 см</option>
+              <option>30 см</option>
+              <option>35 см</option>
+            </select>
+          </label>
+          <button>Заказать</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="drinks">
+      <h2>Напитки</h2>
+      <p>Скоро будут доступны!</p>
+    </section>
+
+    <section id="order-form">
+      <h2>Форма заказа</h2>
+      <form>
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="tel" placeholder="Телефон" required />
+        <textarea placeholder="Комментарий к заказу"></textarea>
+        <button type="submit">Отправить заказ</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 У Витька😎 – Все права защищены</p>
+  </footer>
+</body>
+</html>
