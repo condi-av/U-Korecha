@@ -1,21 +1,25 @@
 :root {
+    /* Темная тема по умолчанию */
     --primary: #E74C3C;
     --primary-dark: #C0392B;
     --secondary: #F1C40F;
     --success: #2ECC71;
-    --bg: #ffffff;
-    --text: #2c3e50;
-    --text-light: #7f8c8d;
-    --card-bg: rgba(255,255,255,0.8);
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-[data-theme="dark"] {
     --bg: #2c3e50;
     --text: #ecf0f1;
     --text-light: #bdc3c7;
-    --card-bg: rgba(0,0,0,0.2);
+    --card-bg: rgba(0,0,0,0.4);
     --shadow: 0 4px 6px rgba(0,0,0,0.3);
+    --menu-bg: rgba(0,0,0,0.4);
+}
+
+[data-theme="light"] {
+    /* Светлая тема */
+    --bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --card-bg: rgba(245,245,245,0.9);
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --menu-bg: rgba(245,245,245,0.9);
 }
 
 * {
@@ -51,6 +55,7 @@ body {
     margin: 0 auto;
     padding: 0 1rem;
 }
+
 .slogan .chudo-pizza {
     font-family: 'Playfair Display', serif;
     font-size: 1.4em;
@@ -63,6 +68,7 @@ body {
     font-size: 0.9em;
     opacity: 0.8;
 }
+
 .phone-link {
     display: flex;
     align-items: center;
@@ -116,10 +122,11 @@ body {
     border-bottom: 2px solid var(--primary);
     margin: 1rem 0;
     justify-content: center;
-    background: var(--bg);
+    background: var(--menu-bg);
     position: sticky;
     top: 80px;
     z-index: 999;
+    backdrop-filter: blur(5px);
 }
 
 .menu-category button {
