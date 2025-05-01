@@ -90,9 +90,13 @@ body {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 2.4rem; /* Изменили размер */
     font-weight: 700;
     line-height: 1;
+    /* Добавили новые свойства */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .slogan {
@@ -559,6 +563,37 @@ body {
     }
 }
 
+/* Анимация для смайлика */
+.logo-o {
+    display: inline-block;
+    position: relative;
+    animation: floatGlasses 2s ease-in-out infinite;
+}
+
+@keyframes floatGlasses {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    30% { transform: translateY(-8px); opacity: 0.8; }
+    50% { transform: translateY(-12px); opacity: 0.6; }
+    70% { transform: translateY(-8px); opacity: 0.8; }
+}
+
+.logo-o::after {
+    content: "😎";
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { opacity: 0; }
+    95% { opacity: 1; }
+}
+
+/* Ускорение анимации при наведении */
+.logo-container:hover .logo-o {
+    animation-duration: 1.5s;
+}
 @media (max-width: 480px) {
     .header-container {
         flex-direction: column;
