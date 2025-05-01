@@ -599,3 +599,21 @@ body {
         padding: 1rem;
     }
 }
+
+
+/* ТЕМЫ: светлая и тёмная */
+[data-theme="light"] body {
+    background-color: #ffffff;
+    color: #222222;
+}
+[data-theme="light"] .header {
+    background-color: #f5f5f5;
+}
+
+[data-theme="dark"] body {
+    background-color: #111111;
+    color: #eeeeee;
+}
+[data-theme="dark"] .header {
+    background-color: #222222;
+}
