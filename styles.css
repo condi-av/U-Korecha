@@ -56,6 +56,34 @@ body {
     padding: 0 1rem;
 }
 
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-smiley {
+    display: inline-block;
+    animation: pulse 2s infinite, rotate 4s infinite;
+    font-size: 1.2em;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
 .slogan .chudo-pizza {
     font-family: 'Playfair Display', serif;
     font-size: 1.4em;
@@ -86,13 +114,6 @@ body {
 .logo-container {
     display: flex;
     flex-direction: column;
-}
-
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 1;
 }
 
 .slogan {
@@ -484,6 +505,10 @@ body {
     background: var(--primary-dark);
 }
 
+#theme-toggle i {
+    pointer-events: none;
+}
+
 /* Modal Styles */
 .modal {
     display: none;
@@ -536,21 +561,6 @@ body {
 
 .form-group textarea {
     height: 80px;
-}
-.logo-smiley {
-    display: inline-block;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-/* Fix for theme toggle */
-#theme-toggle i {
-    pointer-events: none;
 }
 
 /* Responsive */
