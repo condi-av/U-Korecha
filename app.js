@@ -26,12 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.size-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const parent = this.closest('.product-info');
-            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            const price = this.getAttribute('data-price');
-            const addButton = this.closest('.product-card').querySelector('.add-to-cart');
-            addButton.setAttribute('data-price', price);
+            if (parent) {
+                parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const price = this.getAttribute('data-price');
+                const addButton = this.closest('.product-card').querySelector('.add-to-cart');
+                addButton.setAttribute('data-price', price);
+            }
         });
     });
 
@@ -47,22 +49,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Функция добавления в корзину
+    // Функция добавления в корзину (исправленная)
     function addToCart(id, name, price) {
-        const size = document.querySelector(`[data-id="${id}"]`).closest('.product-card')
-            .querySelector('.size-btn.active').getAttribute('data-size');
+        const productCard = document.querySelector(`[data-id="${id}"]`).closest('.product-card');
+        const sizeBtn = productCard.querySelector('.size-btn.active');
         
-        const existingItem = cart.find(item => item.id === id && item.size === size);
+        // Для напитков size будет null
+        const size = sizeBtn ? sizeBtn.getAttribute('data-size') : null;
+        const displayName = size ? `${name} (${size} см)` : name;
+        
+        // Поиск существующего товара (учитываем наличие размера)
+        const existingItem = cart.find(item => 
+            item.id === id && 
+            ((size && item.size === size) || (!size && !item.size))
+        );
         
         if (existingItem) {
             existingItem.quantity++;
         } else {
             cart.push({
                 id,
-                name: `${name} (${size} см)`,
+                name: displayName,
                 price: parseInt(price),
                 quantity: 1,
-                size
+                size: size || null
             });
         }
         
@@ -96,10 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="cart-item-price">${itemTotal} ₽</span>
                 </div>
                 <div class="cart-item-controls">
-                    <button onclick="changeQuantity('${item.id}', -1, '${item.size}')">-</button>
+                    <button onclick="changeQuantity('${item.id}', -1, '${item.size || ''}')">-</button>
                     <span class="cart-item-quantity">${item.quantity}</span>
-                    <button onclick="changeQuantity('${item.id}', 1, '${item.size}')">+</button>
-                    <button onclick="removeFromCart('${item.id}', '${item.size}')">
+                    <button onclick="changeQuantity('${item.id}', 1, '${item.size || ''}')">+</button>
+                    <button onclick="removeFromCart('${item.id}', '${item.size || ''}')">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -114,13 +124,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Глобальные функции
     window.changeQuantity = function(id, delta, size) {
-        const item = cart.find(item => item.id === id && item.size === size);
+        // Для напитков size будет пустой строкой, преобразуем в null
+        const itemSize = size === '' ? null : size;
+        
+        const item = cart.find(item => 
+            item.id === id && 
+            ((itemSize !== null && item.size === itemSize) || (itemSize === null && item.size === null))
+        );
+        
         if (!item) return;
         
         item.quantity += delta;
         
         if (item.quantity < 1) {
-            removeFromCart(id, size);
+            removeFromCart(id, itemSize);
             return;
         }
         
@@ -128,7 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.removeFromCart = function(id, size) {
-        cart = cart.filter(item => !(item.id === id && item.size === size));
+        // Для напитков size будет пустой строкой, преобразуем в null
+        const itemSize = size === '' ? null : size;
+        
+        cart = cart.filter(item => 
+            !(item.id === id && 
+            ((itemSize !== null && item.size === itemSize) || (itemSize === null && item.size === null))
+        );
         updateCart();
         showNotification('Товар удален из корзины');
     };
@@ -208,17 +231,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Переключение темы
+    // Переключение темы (исправленное)
     document.getElementById('theme-toggle').addEventListener('click', function() {
         const body = document.body;
         const themeIcon = this.querySelector('i');
         
         if (body.getAttribute('data-theme') === 'dark') {
             body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
             themeIcon.classList.replace('fa-sun', 'fa-moon');
         } else {
             body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
     });
+
+    // Проверка сохраненной темы при загрузке
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+    }
 });
