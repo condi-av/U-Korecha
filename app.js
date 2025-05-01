@@ -200,31 +200,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Переключение темы
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            const themeIcon = this.querySelector('i');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    }
-
-    // Применение сохраненной темы
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.setAttribute('data-theme', 'dark');
-        if (themeToggle) {
-            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+// Переключение темы
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+        const themeIcon = this.querySelector('i');
+        if (document.body.getAttribute('data-theme') === 'dark') {
+            document.body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
+    });
+}
+
+// Применение сохраненной темы
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+    if (themeToggle) {
+        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
     }
+}
 
     // Закрытие корзины при клике вне ее области
     document.addEventListener('click', function(event) {
