@@ -73,6 +73,13 @@ body {
     font-size: 1.2em;
 }
 
+.slogan {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+/* Анимации для смайлика */
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
@@ -85,31 +92,19 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-.slogan .chudo-pizza {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4em;
-    letter-spacing: 1px;
-}
-
-.slogan .location {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 0.9em;
-    opacity: 0.8;
-}
-
 .phone-link {
+    color: white;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 8px;
     text-decoration: none;
-    color: inherit;
 }
 
 .phone-number {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 1.1em;
+    margin-left: 8px;
+    font-size: 1.1rem;
 }
 
 .logo-container {
@@ -150,7 +145,6 @@ body {
     z-index: 999;
     backdrop-filter: blur(5px);
 }
-
 .menu-category button {
     background: none;
     border: none;
