@@ -210,15 +210,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Переключение темы
     document.getElementById('theme-toggle').addEventListener('click', function() {
-        const body = document.body;
-        const themeIcon = this.querySelector('i');
-        
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.removeAttribute('data-theme');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
-    });
+    const body = document.body;
+    const themeIcon = this.querySelector('i');
+    
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.classList.replace('fa-sun', 'fa-moon'); // Меняем солнце на луну
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun'); // Меняем луну на солнце
+    }
 });
