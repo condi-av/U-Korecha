@@ -79,6 +79,61 @@ body {
     margin-top: 3px;
 }
 
+/* Header styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    gap: 15px; /* Добавляем промежуток между элементами */
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.chudo-pizza {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.town {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    opacity: 0.8;
+    color: white;
+    margin-top: 3px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .location {
+        order: 3;
+        width: 100%;
+        padding: 5px 0;
+    }
+    
+    .chudo-pizza {
+        font-size: 1.2em;
+    }
+}
+
 /* Анимации для смайлика */
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
