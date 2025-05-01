@@ -537,6 +537,21 @@ body {
 .form-group textarea {
     height: 80px;
 }
+.logo-smiley {
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Fix for theme toggle */
+#theme-toggle i {
+    pointer-events: none;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
