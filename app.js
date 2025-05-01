@@ -49,22 +49,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Функция добавления в корзину
+    // Функция добавления в корзину (исправленная)
     function addToCart(id, name, price) {
         const productCard = document.querySelector(`[data-id="${id}"]`).closest('.product-card');
-        const isPizza = productCard.querySelector('.size-selector') !== null;
+        const sizeBtn = productCard.querySelector('.size-btn.active');
         
-        let size = null;
-        if (isPizza) {
-            const sizeBtn = productCard.querySelector('.size-btn.active');
-            size = sizeBtn ? sizeBtn.getAttribute('data-size') : null;
-        }
-        
+        // Для напитков size будет null
+        const size = sizeBtn ? sizeBtn.getAttribute('data-size') : null;
         const displayName = size ? `${name} (${size} см)` : name;
         
+        // Поиск существующего товара (учитываем наличие размера)
         const existingItem = cart.find(item => 
             item.id === id && 
-            (isPizza ? item.size === size : !item.size)
+            ((size && item.size === size) || (!size && !item.size))
         );
         
         if (existingItem) {
@@ -75,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: displayName,
                 price: parseInt(price),
                 quantity: 1,
-                size: isPizza ? size : null
+                size: size || null
             });
         }
         
@@ -127,11 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Глобальные функции
     window.changeQuantity = function(id, delta, size) {
+        // Для напитков size будет пустой строкой, преобразуем в null
         const itemSize = size === '' ? null : size;
         
         const item = cart.find(item => 
             item.id === id && 
-            ((itemSize !== null && item.size === itemSize) || (itemSize === null && item.size === null)
+            ((itemSize !== null && item.size === itemSize) || (itemSize === null && item.size === null))
         );
         
         if (!item) return;
@@ -147,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.removeFromCart = function(id, size) {
+        // Для напитков size будет пустой строкой, преобразуем в null
         const itemSize = size === '' ? null : size;
         
         cart = cart.filter(item => 
@@ -232,26 +231,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Переключение темы
+    // Переключение темы (исправленное)
     document.getElementById('theme-toggle').addEventListener('click', function() {
-        const htmlEl = document.documentElement;
+        const body = document.body;
         const themeIcon = this.querySelector('i');
         
-        if (htmlEl.getAttribute('data-theme') === 'dark') {
-            htmlEl.removeAttribute('data-theme');
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
             themeIcon.classList.replace('fa-sun', 'fa-moon');
         } else {
-            htmlEl.setAttribute('data-theme', 'dark');
+            body.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
     });
 
-    // Инициализация темы
+    // Проверка сохраненной темы при загрузке
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.setAttribute('data-theme', 'dark');
         document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
     }
 });
