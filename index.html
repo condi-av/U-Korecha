@@ -604,6 +604,24 @@
         </form>
     </div>
 </div>
+     <script>
+document.querySelectorAll('.menu-category button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Удаляем active у всех кнопок
+        document.querySelectorAll('.menu-category button').forEach(b => b.classList.remove('active'));
+        
+        // Добавляем active текущей кнопке
+        this.classList.add('active');
+        
+        // Фильтруем продукты
+        const category = this.dataset.category;
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.display = card.dataset.category === category ? 'block' : 'none';
+        });
+    });
+});
+</script>
+    
     <script src="app.js"></script>
 </body>
 </html>
