@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const notification = document.getElementById('notification');
     const orderModal = document.getElementById('order-modal');
     
-    // Загрузка корзины из localStorage или создание новой
+    // Загрузка корзины из localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Обновление UI корзины
@@ -44,14 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Добавление в корзину с проверкой на дубликаты
+    // Добавление в корзину
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const name = this.getAttribute('data-name');
             const price = parseFloat(this.getAttribute('data-price'));
             const id = this.getAttribute('data-id');
             
-            // Проверяем, есть ли уже такой товар в корзине
             const existingItem = cart.find(item => item.id === id && item.price === price);
             
             if (existingItem) {
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Изменение количества товара
+    // Изменение количества
     window.changeQuantity = function(index, change) {
         const newQuantity = cart[index].quantity + change;
         
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Оформление заказа
     window.checkout = function() {
         if (cart.length === 0) {
-            showNotification('Корзина пуста!');
+            showNotification('Корзина пуста!', 'error');
             return;
         }
         orderModal.style.display = 'block';
@@ -104,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
         orderModal.style.display = 'none';
     };
 
-    // Отправка заказа
-    window.submitOrder = function(event) {
+    // Отправка заказа в Telegram
+    window.submitOrder = async function(event) {
         event.preventDefault();
         
         const name = document.getElementById('name').value;
@@ -113,48 +112,90 @@ document.addEventListener('DOMContentLoaded', function() {
         const address = document.getElementById('address').value;
         const comment = document.getElementById('comment').value;
         
-        // Здесь должна быть логика отправки данных на сервер
-        console.log('Заказ оформлен:', {
-            customer: { name, phone, address },
-            comment,
-            items: cart,
-            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        // Формируем сообщение
+        let message = `🍕 *Новый заказ | Пицца у Кореша* 🍕\n\n`;
+        message += `👤 *Имя:* ${name}\n`;
+        message += `📞 *Телефон:* ${phone}\n`;
+        message += `📍 *Адрес:* ${address}\n\n`;
+        message += `🛒 *Заказ:*\n`;
+        
+        cart.forEach(item => {
+            message += `- ${item.name} (${item.quantity} x ${item.price}₽) = ${item.quantity * item.price}₽\n`;
         });
         
-        showNotification('Заказ успешно оформлен!');
-        closeModal();
-        
-        // Очистка корзины после оформления
-        cart = [];
-        updateCartUI();
-        
-        // Очистка формы
-        event.target.reset();
+        message += `\n💰 *Итого:* ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)}₽\n`;
+        message += `📝 *Комментарий:* ${comment || 'нет'}\n\n`;
+        message += `⏱ ${new Date().toLocaleString('ru-RU')}`;
+
+        try {
+            const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
+            const chatId = '5414933430';
+            
+            // Показываем индикатор загрузки
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            submitBtn.disabled = true;
+
+            // Отправка в Telegram
+            const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.description || 'Ошибка сервера');
+            }
+
+            showNotification('✅ Заказ успешно отправлен!');
+            closeModal();
+            
+            // Очистка корзины
+            cart = [];
+            updateCartUI();
+            event.target.reset();
+
+        } catch (error) {
+            console.error('Ошибка:', error);
+            showNotification(`❌ Ошибка: ${error.message}`, 'error');
+        } finally {
+            if (submitBtn) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
     };
 
-    // Показать уведомление
-    function showNotification(message) {
+    // Уведомления
+    function showNotification(message, type = 'success') {
         notification.textContent = message;
+        notification.className = 'notification';
+        notification.style.backgroundColor = type === 'error' ? 'var(--danger)' : 'var(--success)';
         notification.classList.add('show');
         setTimeout(() => notification.classList.remove('show'), 3000);
     }
 
-    // Обработка выбора размера пиццы
+    // Обработка размеров пиццы
     document.querySelectorAll('.size-btn').forEach(button => {
         button.addEventListener('click', function() {
             const parent = this.closest('.product-card');
             const addButton = parent.querySelector('.add-to-cart');
             const price = parseFloat(this.getAttribute('data-price'));
             
-            // Обновляем цену в кнопке добавления
             addButton.setAttribute('data-price', price);
             
-            // Снимаем активный класс со всех кнопок размера
             parent.querySelectorAll('.size-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Добавляем активный класс текущей кнопке
             this.classList.add('active');
         });
     });
@@ -176,15 +217,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Применение темы при загрузке
+    // Применение сохраненной темы
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.setAttribute('data-theme', 'dark');
         if (themeToggle) {
             themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
         }
-    } else {
-        body.removeAttribute('data-theme');
     }
 
     // Закрытие корзины при клике вне ее области
@@ -196,6 +235,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Инициализация UI
+    // Инициализация
     updateCartUI();
 });
