@@ -13,7 +13,7 @@
 <body>
     <div class="notification" id="notification"></div>
     
-<header class="header">
+<header class="header" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
     <div class="header-container">
 <div class="logo-container">
     <div class="logo">
@@ -444,47 +444,111 @@
             </button>
         </div>
 
-    <!-- Напитки -->
-    <div class="product-card" data-category="drinks">
-        <div class="product-header">
-            <div class="product-icon" style="color: #3498DB">
-                <i class="fas fa-bottle-water"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>Кола</h3>
+        <!-- Напитки -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon" style="color: #3498DB">
+                    <i class="fas fa-bottle-water"></i>
                 </div>
-                <div class="rating">★★★★☆ 4.0</div>
-                <div class="price">120 ₽ · 0.5л</div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Кола</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.0</div>
+                    <div class="price">120 ₽ · 0.5л</div>
+                </div>
             </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Классический газированный напиток
+            </div>
+            <button class="add-to-cart" data-id="6" data-name="Кола" data-price="120">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
         </div>
-        <div class="product-ingredients">
-            <strong>Описание:</strong> Классический газированный напиток
-        </div>
-        <button class="add-to-cart" data-id="6" data-name="Кола" data-price="120">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
 
-    <div class="product-card" data-category="drinks">
-        <div class="product-header">
-            <div class="product-icon" style="color: #1ABC9C">
-                <i class="fas fa-glass-water"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>Лимонад</h3>
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon" style="color: #1ABC9C">
+                    <i class="fas fa-glass-water"></i>
                 </div>
-                <div class="rating">★★★★☆ 4.3</div>
-                <div class="price">100 ₽ · 0.5л</div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Лимонад</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.3</div>
+                    <div class="price">100 ₽ · 0.5л</div>
+                </div>
             </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Натуральный лимонный сок, мята, лайм
+            </div>
+            <button class="add-to-cart" data-id="7" data-name="Лимонад" data-price="100">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
         </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Натуральный лимонный сок, мята, лайм
+
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon" style="color: #E67E22">
+                    <i class="fas fa-mug-hot"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Чай</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.1</div>
+                    <div class="price">80 ₽ · 0.3л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Черный или зеленый чай на выбор
+            </div>
+            <button class="add-to-cart" data-id="8" data-name="Чай" data-price="80">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
         </div>
-        <button class="add-to-cart" data-id="7" data-name="Лимонад" data-price="100">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
+
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon" style="color: #8B4513">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Кофе</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.6</div>
+                    <div class="price">120 ₽ · 0.2л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Ароматный эспрессо или американо
+            </div>
+            <button class="add-to-cart" data-id="9" data-name="Кофе" data-price="120">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
+
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon" style="color: #9B59B6">
+                    <i class="fas fa-glass-water"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Морс</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.4</div>
+                    <div class="price">90 ₽ · 0.4л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Ягодный микс (смородина, малина, вишня), мёд, мята
+            </div>
+            <button class="add-to-cart" data-id="10" data-name="Морс" data-price="90">
+                <i class="fas fa-plus"></i> В корзину
+            </button>
+        </div>
     </div>
 
     <!-- Корзина -->
@@ -505,16 +569,15 @@
         </div>
     </div>
 
-    <!-- Кнопки внизу страницы -->
-    <button class="theme-btn" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Кнопка корзины -->
+     <button class="theme-btn" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+   </button> 
     
-    <button class="cart-btn" onclick="toggleCart()">
+        <button class="cart-btn" onclick="toggleCart()">
         <i class="fas fa-shopping-cart"></i>
         <span id="cart-count">0</span>
     </button>
-        
     <!-- Модальное окно оформления заказа -->
 <div class="modal" id="order-modal">
     <div class="modal-content">
