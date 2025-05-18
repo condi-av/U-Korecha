@@ -719,3 +719,87 @@ body {
         padding: 1rem;
     }
 }
+/* Добавляем новые стили в конец файла */
+
+/* Иконки */
+.icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.product-image {
+    width: 50px;
+    height: 50px;
+}
+
+/* Анимация для спиннера */
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Плавающая форма на мобильных */
+@media (max-width: 768px) {
+    .modal-content {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 12px 12px 0 0;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px; /* Увеличиваем размер шрифта для мобильных */
+    }
+    
+    #address, #comment {
+        min-height: 100px; /* Увеличиваем высоту текстовых полей */
+    }
+}
+
+/* Дополнительные стили для иконок */
+.product-icon {
+    background: none !important;
+}
+
+.size-selector {
+    gap: 5px;
+}
+
+.size-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+/* Улучшаем видимость активных элементов */
+.size-btn.active {
+    font-weight: bold;
+}
+
+/* Улучшаем отображение уведомлений */
+.notification {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+}
+
+/* Оптимизация для очень маленьких экранов */
+@media (max-width: 400px) {
+    .product-card {
+        padding: 1rem;
+    }
+    
+    .product-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .product-icon {
+        margin-bottom: 10px;
+    }
+}
