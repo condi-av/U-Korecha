@@ -40,8 +40,8 @@ body {
     background-color: var(--bg);
     color: var(--text);
     transition: all 0.3s ease;
-    padding-bottom: 100px;
     line-height: 1.6;
+    padding-bottom: 100px;
 }
 
 /* ======================
@@ -176,7 +176,7 @@ body {
 }
 
 /* ======================
-   Карточки товаров
+   Карточки товаров (ОБНОВЛЕНО)
    ====================== */
 .product-list {
     display: grid;
@@ -188,29 +188,41 @@ body {
 .product-card {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 1.5rem;
+    overflow: hidden;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
-    display: block; /* Для фильтрации */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image-container {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-content {
+    padding: 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-header {
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.product-icon {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    flex-shrink: 0;
+    margin-bottom: 0.8rem;
 }
 
 .product-info {
@@ -298,6 +310,7 @@ body {
     font-weight: 500;
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+    margin-top: auto;
 }
 
 .add-to-cart:hover {
@@ -677,14 +690,8 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .product-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .product-icon {
-        margin-bottom: 1rem;
+    .product-image-container {
+        height: 200px;
     }
 
     .cart-sidebar {
@@ -694,6 +701,28 @@ body {
     .modal-content {
         margin: 20% auto;
         padding: 1.5rem;
+    }
+    
+    /* Плавающая форма на мобильных */
+    .modal-content {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 12px 12px 0 0;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+    
+    #address, #comment {
+        min-height: 100px;
     }
 }
 
@@ -716,90 +745,21 @@ body {
     }
 
     .product-card {
-        padding: 1rem;
-    }
-}
-/* Добавляем новые стили в конец файла */
-
-/* Иконки */
-.icon {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-}
-
-.product-image {
-    width: 50px;
-    height: 50px;
-}
-
-/* Анимация для спиннера */
-.spin {
-    animation: spin 1s linear infinite;
-}
-
-/* Плавающая форма на мобильных */
-@media (max-width: 768px) {
-    .modal-content {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 12px 12px 0 0;
-        max-height: 80vh;
-        overflow-y: auto;
+        padding: 0;
     }
     
-    .form-group input,
-    .form-group textarea {
-        font-size: 16px; /* Увеличиваем размер шрифта для мобильных */
+    .product-image-container {
+        height: 160px;
     }
-    
-    #address, #comment {
-        min-height: 100px; /* Увеличиваем высоту текстовых полей */
-    }
-}
-
-/* Дополнительные стили для иконок */
-.product-icon {
-    background: none !important;
-}
-
-.size-selector {
-    gap: 5px;
-}
-
-.size-btn {
-    padding: 5px 10px;
-    font-size: 0.8rem;
-}
-
-/* Улучшаем видимость активных элементов */
-.size-btn.active {
-    font-weight: bold;
-}
-
-/* Улучшаем отображение уведомлений */
-.notification {
-    font-size: 0.9rem;
-    padding: 10px 20px;
 }
 
 /* Оптимизация для очень маленьких экранов */
 @media (max-width: 400px) {
-    .product-card {
+    .product-image-container {
+        height: 140px;
+    }
+    
+    .product-content {
         padding: 1rem;
-    }
-    
-    .product-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .product-icon {
-        margin-bottom: 10px;
     }
 }
