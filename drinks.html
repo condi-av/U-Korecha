@@ -13,6 +13,10 @@
         /* Дополнительные стили для карточек напитков */
         .drinks-category {
             margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1.5rem;
         }
         .drinks-category h3 {
             font-family: 'Playfair Display', serif;
@@ -21,9 +25,61 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
         }
+        
+        /* Исправления для карточек */
+        .product-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .product-card {
+            display: flex;
+            flex-direction: row;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-image-container {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .product-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .product-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-title h3 {
+            text-decoration: none !important;
+            color: inherit !important;
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .add-to-cart {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+    <!-- Остальная часть HTML остается без изменений -->
     <div class="notification" id="notification"></div>
     
     <header class="header">
@@ -60,182 +116,182 @@
             
             <!-- Американо -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/americano.webp" alt="Американо" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/americano.webp" alt="Американо" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Американо</h3>
-                            <div class="price">120 ₽</div>
                         </div>
+                        <div class="price">120 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="101" data-name="Американо" data-price="120">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="101" data-name="Американо" data-price="120">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- 2 эспрессо -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/double-espresso.webp" alt="2 эспрессо" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/double-espresso.webp" alt="2 эспрессо" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>2 эспрессо</h3>
-                            <div class="price">200 ₽</div>
                         </div>
+                        <div class="price">200 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="102" data-name="2 эспрессо" data-price="200">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="102" data-name="2 эспрессо" data-price="200">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Капучино -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/cappuccino.webp" alt="Капучино" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/cappuccino.webp" alt="Капучино" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Капучино</h3>
-                            <div class="price">150 ₽</div>
                         </div>
+                        <div class="price">150 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="103" data-name="Капучино" data-price="150">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="103" data-name="Капучино" data-price="150">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Латте -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/latte.webp" alt="Латте" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/latte.webp" alt="Латте" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Латте</h3>
-                            <div class="price">150 ₽</div>
                         </div>
+                        <div class="price">150 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="104" data-name="Латте" data-price="150">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="104" data-name="Латте" data-price="150">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Горячий шоколад -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/hot-chocolate.webp" alt="Горячий шоколад" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/hot-chocolate.webp" alt="Горячий шоколад" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Горячий шоколад</h3>
-                            <div class="price">100 ₽</div>
                         </div>
+                        <div class="price">100 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="105" data-name="Горячий шоколад" data-price="100">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="105" data-name="Горячий шоколад" data-price="100">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Растворимый кофе -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/instant-coffee.webp" alt="Растворимый кофе" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/instant-coffee.webp" alt="Растворимый кофе" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Растворимый кофе</h3>
-                            <div class="price">50 ₽</div>
                         </div>
+                        <div class="price">50 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="106" data-name="Растворимый кофе" data-price="50">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="106" data-name="Растворимый кофе" data-price="50">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Кофе с молоком -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/coffee-with-milk.webp" alt="Кофе с молоком" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/coffee-with-milk.webp" alt="Кофе с молоком" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Кофе с молоком</h3>
-                            <div class="price">50 ₽</div>
                         </div>
+                        <div class="price">50 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="107" data-name="Кофе с молоком" data-price="50">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="107" data-name="Кофе с молоком" data-price="50">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Чай черный -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/black-tea.webp" alt="Чай черный" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/black-tea.webp" alt="Чай черный" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Чай черный</h3>
-                            <div class="price">50 ₽</div>
                         </div>
+                        <div class="price">50 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="108" data-name="Чай черный" data-price="50">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="108" data-name="Чай черный" data-price="50">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Чай зеленый -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/green-tea.webp" alt="Чай зеленый" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/green-tea.webp" alt="Чай зеленый" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Чай зеленый</h3>
-                            <div class="price">50 ₽</div>
                         </div>
+                        <div class="price">50 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="109" data-name="Чай зеленый" data-price="50">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="109" data-name="Чай зеленый" data-price="50">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Кисель -->
             <div class="product-card" data-category="drinks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/kissel.webp" alt="Кисель" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/kissel.webp" alt="Кисель" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Кисель</h3>
-                            <div class="price">50 ₽</div>
                         </div>
+                        <div class="price">50 ₽</div>
                     </div>
+                    <button class="add-to-cart" data-id="110" data-name="Кисель" data-price="50">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="110" data-name="Кисель" data-price="50">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
         </div>
 
@@ -245,56 +301,56 @@
             
             <!-- Картофель фри -->
             <div class="product-card" data-category="snacks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/french-fries.webp" alt="Картофель фри" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/french-fries.webp" alt="Картофель фри" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Картофель фри</h3>
-                            <div class="price">140 ₽ · 150г</div>
                         </div>
+                        <div class="price">140 ₽ · 150г</div>
                     </div>
+                    <button class="add-to-cart" data-id="201" data-name="Картофель фри" data-price="140">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="201" data-name="Картофель фри" data-price="140">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Наггетсы -->
             <div class="product-card" data-category="snacks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/nuggets.webp" alt="Наггетсы" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/nuggets.webp" alt="Наггетсы" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Наггетсы</h3>
-                            <div class="price">170 ₽ · 10шт</div>
                         </div>
+                        <div class="price">170 ₽ · 10шт</div>
                     </div>
+                    <button class="add-to-cart" data-id="202" data-name="Наггетсы" data-price="170">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="202" data-name="Наггетсы" data-price="170">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
 
             <!-- Картофель по-деревенски -->
             <div class="product-card" data-category="snacks">
-                <div class="product-header">
-                    <div class="product-image-container">
-                        <img src="images/country-potatoes.webp" alt="Картофель по-деревенски" class="product-image">
-                    </div>
-                    <div class="product-info">
+                <div class="product-image-container">
+                    <img src="images/country-potatoes.webp" alt="Картофель по-деревенски" class="product-image">
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
                         <div class="product-title">
                             <h3>Картофель по-деревенски</h3>
-                            <div class="price">150 ₽ · 150г</div>
                         </div>
+                        <div class="price">150 ₽ · 150г</div>
                     </div>
+                    <button class="add-to-cart" data-id="203" data-name="Картофель по-деревенски" data-price="150">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
                 </div>
-                <button class="add-to-cart" data-id="203" data-name="Картофель по-деревенски" data-price="150">
-                    <i class="fas fa-plus"></i> В корзину
-                </button>
             </div>
         </div>
     </div>
