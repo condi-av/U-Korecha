@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Пицца у Кореша</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E74C3C;
+            --bg: #f5f5f5;
+            --text: #333;
+            --card-bg: #fff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: var(--primary);
+            text-align: center;
+        }
+        .admin-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        input, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #c0392b;
+        }
+        .save-all {
+            background: #2ECC71;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .save-all:hover {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1><i class="fas fa-lock"></i> Админ-панель</h1>
+        
+        <!-- Раздел управления товарами -->
+        <div class="admin-section">
+            <h2>Товары и цены</h2>
+            <table id="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Категория</th>
+                        <th>Цена (₽)</th>
+                        <th>Размер/Вес</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Данные подгружаются из JS -->
+                </tbody>
+            </table>
+            <button class="save-all" onclick="saveChanges()">
+                <i class="fas fa-save"></i> Сохранить все изменения
+            </button>
+        </div>
+
+        <!-- Раздел добавления нового товара -->
+        <div class="admin-section">
+            <h2>Добавить товар</h2>
+            <div>
+                <input type="text" id="new-name" placeholder="Название" required>
+                <select id="new-category">
+                    <option value="pizza">Пицца</option>
+                    <option value="vegan">Веганская пицца</option>
+                    <option value="drinks">Напитки</option>
+                    <option value="snacks">Снеки</option>
+                </select>
+                <input type="number" id="new-price" placeholder="Цена" min="0" required>
+                <input type="text" id="new-size" placeholder="Размер (30 см) или вес (150г)">
+                <button onclick="addProduct()"><i class="fas fa-plus"></i> Добавить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные товаров (в реальном проекте загружаются из БД или JSON-файла)
+        let products = [
+            { id: 11, name: "ОХОТА", category: "pizza", price: 520, size: "30 см" },
+            { id: 12, name: "МАРГАРИТА", category: "pizza", price: 390, size: "30 см" },
+            { id: 101, name: "Американо", category: "drinks", price: 120, size: "" },
+            { id: 201, name: "Картофель фри", category: "snacks", price: 140, size: "150г" }
+        ];
+
+        // Загрузка данных в таблицу
+        function loadProducts() {
+            const tbody = document.querySelector("#products-table tbody");
+            tbody.innerHTML = products.map(product => `
+                <tr data-id="${product.id}">
+                    <td>${product.id}</td>
+                    <td><input type="text" value="${product.name}" onchange="updateProduct(${product.id}, 'name', this.value)"></td>
+                    <td>
+                        <select onchange="updateProduct(${product.id}, 'category', this.value)">
+                            <option value="pizza" ${product.category === 'pizza' ? 'selected' : ''}>Пицца</option>
+                            <option value="vegan" ${product.category === 'vegan' ? 'selected' : ''}>Веганская</option>
+                            <option value="drinks" ${product.category === 'drinks' ? 'selected' : ''}>Напитки</option>
+                            <option value="snacks" ${product.category === 'snacks' ? 'selected' : ''}>Снеки</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="${product.price}" onchange="updateProduct(${product.id}, 'price', this.value)"></td>
+                    <td><input type="text" value="${product.size}" onchange="updateProduct(${product.id}, 'size', this.value)"></td>
+                    <td><button onclick="deleteProduct(${product.id})"><i class="fas fa-trash"></i> Удалить</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // Обновление данных товара
+        function updateProduct(id, field, value) {
+            const product = products.find(p => p.id === id);
+            if (product) product[field] = field === 'price' ? parseInt(value) : value;
+        }
+
+        // Удаление товара
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            loadProducts();
+        }
+
+        // Добавление нового товара
+        function addProduct() {
+            const name = document.getElementById("new-name").value;
+            const category = document.getElementById("new-category").value;
+            const price = parseInt(document.getElementById("new-price").value);
+            const size = document.getElementById("new-size").value;
+
+            if (!name || isNaN(price)) {
+                alert("Заполните все поля корректно!");
+                return;
+            }
+
+            const newId = Math.max(...products.map(p => p.id)) + 1;
+            products.push({ id: newId, name, category, price, size });
+            loadProducts();
+
+            // Очистка полей
+            document.getElementById("new-name").value = "";
+            document.getElementById("new-price").value = "";
+            document.getElementById("new-size").value = "";
+        }
+
+        // Сохранение всех изменений (в реальном проекте - отправка на сервер)
+        function saveChanges() {
+            console.log("Сохраненные данные:", products);
+            alert("Изменения сохранены!");
+            // Здесь должен быть AJAX-запрос к серверу
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
