@@ -22,9 +22,22 @@
             margin-bottom: 1rem;
             padding-left: 1.5rem;
         }
+        
+        /* Убираем подчеркивание у названий */
+        .product-title h3 {
+            text-decoration: none !important;
+        }
+        
+        /* Добавляем отступы между карточками в мобильной версии */
+        @media (max-width: 768px) {
+            .product-card {
+                margin-bottom: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Остальной HTML код остается без изменений -->
     <div class="notification" id="notification"></div>
     
     <header class="header">
