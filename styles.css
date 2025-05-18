@@ -243,9 +243,7 @@ body {
     font-size: 1.2rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    color: var(--primary);
-    text-decoration: none !important;
-    cursor: default;
+    color: var(--primary);    
 }
 
 .popular-badge {
@@ -767,4 +765,20 @@ body {
     .product-content {
         padding: 1rem;
     }
+}
+/* Добавьте в конец styles.css */
+.product-card {
+    border: none !important; /* Убирает рамки, если есть */
+}
+
+.product-title h3 {
+    text-decoration: none !important;
+    color: inherit !important; /* Наследует цвет текста */
+    cursor: default;
+    margin: 0;
+    padding: 0;
+}
+
+.product-info {
+    text-decoration: none !important;
 }
