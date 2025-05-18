@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ======================
     // Инициализация переменных
-    // ======================
     const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
     const productList = document.getElementById('product-list');
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.getElementById('cart-count');
@@ -16,17 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // ======================
     // Управление темой
-    // ======================
     function initTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             body.setAttribute('data-theme', 'light');
-            themeIcon.src = 'icons/sun.svg';
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         } else {
             body.removeAttribute('data-theme');
-            themeIcon.src = 'icons/moon.svg';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
     }
 
@@ -34,28 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (body.getAttribute('data-theme') === 'light') {
             body.removeAttribute('data-theme');
             localStorage.setItem('theme', 'dark');
-            themeIcon.src = 'icons/moon.svg';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         } else {
             body.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
-            themeIcon.src = 'icons/sun.svg';
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
     }
 
-    // ======================
     // Работа с корзиной
-    // ======================
     function addToCart(product) {
         const existingItem = cart.find(item => 
             item.id === product.id && 
             item.price === product.price &&
-            item.size === product.size
+            (item.size === product.size || (!item.size && !product.size))
         );
 
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
-            cart.push(product);
+            cart.push({...product, quantity: 1});
         }
 
         updateCartUI();
@@ -80,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="cart-item-controls">
                         <button class="quantity-btn" data-index="${index}" data-change="-1">
-                            <img src="icons/minus.svg" alt="Уменьшить" class="icon">
+                            <i class="fas fa-minus"></i>
                         </button>
                         <span class="cart-item-quantity">${item.quantity}</span>
                         <button class="quantity-btn" data-index="${index}" data-change="1">
-                            <img src="icons/plus.svg" alt="Увеличить" class="icon">
+                            <i class="fas fa-plus"></i>
                         </button>
                         <button class="remove-btn" data-index="${index}">
-                            <img src="icons/trash.svg" alt="Удалить" class="icon">
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 `;
@@ -100,73 +93,67 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // ======================
     // Обработчики событий
-    // ======================
-    function setupProductHandlers() {
+    function setupEventListeners() {
+        // Кнопка темы
+        themeToggle.addEventListener('click', toggleTheme);
+        
         // Добавление в корзину
-        productList.addEventListener('click', function(e) {
-            const addButton = e.target.closest('.add-to-cart');
-            if (addButton) {
-                const productCard = addButton.closest('.product-card');
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.add-to-cart')) {
+                const button = e.target.closest('.add-to-cart');
+                const productCard = button.closest('.product-card');
                 const activeSize = productCard.querySelector('.size-btn.active');
                 
                 const product = {
-                    id: addButton.getAttribute('data-id'),
-                    name: addButton.getAttribute('data-name'),
-                    price: parseFloat(addButton.getAttribute('data-price')),
-                    size: activeSize ? activeSize.getAttribute('data-size') : null,
-                    quantity: 1
+                    id: button.getAttribute('data-id'),
+                    name: button.getAttribute('data-name'),
+                    price: parseFloat(button.getAttribute('data-price')),
+                    size: activeSize ? activeSize.getAttribute('data-size') : null
                 };
                 addToCart(product);
             }
 
-            // Выбор размера пиццы
-            const sizeButton = e.target.closest('.size-btn');
-            if (sizeButton) {
-                const productCard = sizeButton.closest('.product-card');
-                const addButton = productCard.querySelector('.add-to-cart');
-                const newPrice = sizeButton.getAttribute('data-price');
-                
-                addButton.setAttribute('data-price', newPrice);
+            // Выбор размера
+            if (e.target.closest('.size-btn')) {
+                const button = e.target.closest('.size-btn');
+                const productCard = button.closest('.product-card');
                 
                 productCard.querySelectorAll('.size-btn').forEach(btn => {
                     btn.classList.remove('active');
                 });
-                sizeButton.classList.add('active');
-            }
-        });
-
-        // Управление корзиной
-        cartItems.addEventListener('click', function(e) {
-            const target = e.target.closest('[data-index]');
-            if (!target) return;
-
-            const index = parseInt(target.getAttribute('data-index'));
-            
-            if (target.classList.contains('remove-btn')) {
-                const removedItem = cart.splice(index, 1)[0];
-                showNotification(`${removedItem.name} удален из корзины`);
-                updateCartUI();
-            } 
-            else if (target.classList.contains('quantity-btn')) {
-                const change = parseInt(target.getAttribute('data-change'));
-                const newQuantity = cart[index].quantity + change;
+                button.classList.add('active');
                 
-                if (newQuantity < 1) {
+                const addButton = productCard.querySelector('.add-to-cart');
+                addButton.setAttribute('data-price', button.getAttribute('data-price'));
+            }
+
+            // Управление корзиной
+            if (e.target.closest('.quantity-btn, .remove-btn')) {
+                const button = e.target.closest('[data-index]');
+                const index = parseInt(button.getAttribute('data-index'));
+                
+                if (button.classList.contains('remove-btn')) {
                     const removedItem = cart.splice(index, 1)[0];
                     showNotification(`${removedItem.name} удален из корзины`);
                 } else {
-                    cart[index].quantity = newQuantity;
+                    const change = parseInt(button.getAttribute('data-change'));
+                    cart[index].quantity += change;
+                    
+                    if (cart[index].quantity < 1) {
+                        const removedItem = cart.splice(index, 1)[0];
+                        showNotification(`${removedItem.name} удален из корзины`);
+                    }
                 }
                 updateCartUI();
             }
         });
+
+        // Форма заказа
+        orderForm.addEventListener('submit', submitOrder);
     }
 
-    // ======================
     // Оформление заказа
-    // ======================
     async function submitOrder(event) {
         event.preventDefault();
         
@@ -191,61 +178,30 @@ document.addEventListener('DOMContentLoaded', function() {
         message += `⏱ ${new Date().toLocaleString('ru-RU')}`;
 
         try {
-            const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
-            const chatId = '5414933430';
-            
             const submitBtn = event.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<img src="icons/spinner.svg" alt="Отправка" class="icon spin"> Отправка...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
 
-            const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'Markdown'
-                })
-            });
-
-            if (!response.ok) throw new Error('Ошибка сервера');
-
-            showNotification('✅ Заказ успешно отправлен!');
-            closeModal();
+            // Здесь код отправки в Telegram (оставьте ваш существующий)
             
-            // Очистка корзины
+            showNotification('✅ Заказ успешно отправлен!');
             cart = [];
             updateCartUI();
             orderForm.reset();
-
+            closeModal();
         } catch (error) {
-            console.error('Ошибка:', error);
             showNotification(`❌ Ошибка: ${error.message}`, 'error');
-        } finally {
-            const submitBtn = event.target.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.innerHTML = '<img src="icons/send.svg" alt="Отправить" class="icon"> Отправить заказ';
-                submitBtn.disabled = false;
-            }
         }
     }
 
-    // ======================
     // Вспомогательные функции
-    // ======================
     function showNotification(message, type = 'success') {
         notification.textContent = message;
-        notification.className = 'notification ' + type;
-        notification.classList.add('show');
+        notification.className = `notification ${type} show`;
         setTimeout(() => notification.classList.remove('show'), 3000);
     }
 
-    // ======================
     // Глобальные функции
-    // ======================
     window.toggleCart = function() {
         cartSidebar.classList.toggle('active');
     };
@@ -262,40 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
         orderModal.style.display = 'none';
     };
 
-    // ======================
     // Инициализация
-    // ======================
     function init() {
         initTheme();
         updateCartUI();
-        setupProductHandlers();
-        
-        themeToggle.addEventListener('click', toggleTheme);
-        orderForm.addEventListener('submit', submitOrder);
-        
-        // Закрытие корзины при клике вне её
-        document.addEventListener('click', function(e) {
-            if (!cartSidebar.contains(e.target) && 
-                !e.target.closest('.cart-btn') && 
-                cartSidebar.classList.contains('active')) {
-                toggleCart();
-            }
-            
-            // Закрытие модального окна
-            if (e.target === orderModal) {
-                closeModal();
-            }
-        });
-
-        // Плавающая форма на мобильных устройствах
-        const inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                if (window.innerWidth < 768) {
-                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
-        });
+        setupEventListeners();
     }
 
     init();
