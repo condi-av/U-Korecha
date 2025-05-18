@@ -182,15 +182,40 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
 
-            // Здесь код отправки в Telegram (оставьте ваш существующий)
-            
+            // Данные вашего бота
+            const botToken = '8195704085:AAHMBHP0g906T86Q0w0gW7cMsCvpFq-yw1g';
+            const chatId = '5414933430';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.description || 'Ошибка при отправке заказа');
+            }
+
             showNotification('✅ Заказ успешно отправлен!');
             cart = [];
             updateCartUI();
             orderForm.reset();
             closeModal();
         } catch (error) {
+            console.error('Ошибка отправки:', error);
             showNotification(`❌ Ошибка: ${error.message}`, 'error');
+        } finally {
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заказ';
+            submitBtn.disabled = false;
         }
     }
 
