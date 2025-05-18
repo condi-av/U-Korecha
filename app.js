@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ======================
     const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
     const productList = document.getElementById('product-list');
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.getElementById('cart-count');
@@ -22,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             body.setAttribute('data-theme', 'light');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            themeIcon.src = 'icons/sun.svg';
         } else {
             body.removeAttribute('data-theme');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            themeIcon.src = 'icons/moon.svg';
         }
     }
 
@@ -33,11 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (body.getAttribute('data-theme') === 'light') {
             body.removeAttribute('data-theme');
             localStorage.setItem('theme', 'dark');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            themeIcon.src = 'icons/moon.svg';
         } else {
             body.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            themeIcon.src = 'icons/sun.svg';
         }
     }
 
@@ -79,14 +80,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="cart-item-controls">
                         <button class="quantity-btn" data-index="${index}" data-change="-1">
-                            <i class="fas fa-minus"></i>
+                            <img src="icons/minus.svg" alt="Уменьшить" class="icon">
                         </button>
                         <span class="cart-item-quantity">${item.quantity}</span>
                         <button class="quantity-btn" data-index="${index}" data-change="1">
-                            <i class="fas fa-plus"></i>
+                            <img src="icons/plus.svg" alt="Увеличить" class="icon">
                         </button>
                         <button class="remove-btn" data-index="${index}">
-                            <i class="fas fa-trash"></i>
+                            <img src="icons/trash.svg" alt="Удалить" class="icon">
                         </button>
                     </div>
                 `;
@@ -163,22 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function setupCategoryFilters() {
-        document.querySelectorAll('.menu-category button').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.menu-category button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                const category = this.getAttribute('data-category');
-                document.querySelectorAll('.product-card').forEach(card => {
-                    card.style.display = card.getAttribute('data-category') === category ? 'block' : 'none';
-                });
-            });
-        });
-    }
-
     // ======================
     // Оформление заказа
     // ======================
@@ -211,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            submitBtn.innerHTML = '<img src="icons/spinner.svg" alt="Отправка" class="icon spin"> Отправка...';
             submitBtn.disabled = true;
 
             const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -242,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } finally {
             const submitBtn = event.target.querySelector('button[type="submit"]');
             if (submitBtn) {
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заказ';
+                submitBtn.innerHTML = '<img src="icons/send.svg" alt="Отправить" class="icon"> Отправить заказ';
                 submitBtn.disabled = false;
             }
         }
@@ -284,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initTheme();
         updateCartUI();
         setupProductHandlers();
-        setupCategoryFilters();
         
         themeToggle.addEventListener('click', toggleTheme);
         orderForm.addEventListener('submit', submitOrder);
@@ -301,6 +285,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === orderModal) {
                 closeModal();
             }
+        });
+
+        // Плавающая форма на мобильных устройствах
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
         });
     }
 
