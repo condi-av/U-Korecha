@@ -244,6 +244,8 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     color: var(--primary);
+    text-decoration: none !important;
+    cursor: default;
 }
 
 .popular-badge {
