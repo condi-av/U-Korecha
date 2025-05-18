@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=yes">
+    <title>Пицца у Кореша😎 | Напитки и Снеки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">У К<span class="logo-smiley">😎</span>решА</div>
+                <div class="slogan">Настоящая итальянская пицца</div>
+            </div>
+            
+            <div class="location">
+                <span class="chudo-pizza">ЧУДО-ПИЦЦА</span>
+                <span class="town">пгт. Озёрный</span>
+            </div>
+            
+            <div class="header-actions">
+                <a href="tel:+79301678326" class="phone-link">
+                    <img src="icons/phone.svg" alt="Телефон" class="icon">
+                    <span class="phone-number">+7 930 167-83-26</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="menu-category">
+        <button onclick="location.href='index.html'">Пицца</button>
+        <button onclick="location.href='vegan.html'">Веганская</button>
+        <button class="active">Напитки и Снеки</button>
+    </nav>
+
+    <div class="product-list" id="product-list">
+        <!-- Кола -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/cola.svg" alt="Кола" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Кола</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.0</div>
+                    <div class="price">120 ₽ · 0.5л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Классический газированный напиток
+            </div>
+            <button class="add-to-cart" data-id="6" data-name="Кола" data-price="120">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- Чай -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/tea.svg" alt="Чай" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Чай</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.1</div>
+                    <div class="price">80 ₽ · 0.3л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Черный или зеленый чай на выбор
+            </div>
+            <button class="add-to-cart" data-id="8" data-name="Чай" data-price="80">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- Кофе -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/coffee.svg" alt="Кофе" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Кофе</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.6</div>
+                    <div class="price">120 ₽ · 0.2л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Описание:</strong> Ароматный эспрессо или американо
+            </div>
+            <button class="add-to-cart" data-id="9" data-name="Кофе" data-price="120">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- Морс -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/mors.svg" alt="Морс" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Морс</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.4</div>
+                    <div class="price">90 ₽ · 0.4л</div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Ягодный микс (смородина, малина, вишня), мёд, мята
+            </div>
+            <button class="add-to-cart" data-id="10" data-name="Морс" data-price="90">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- Картофель фри -->
+        <div class="product-card" data-category="snacks">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/fries.svg" alt="Картофель фри" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Картофель
