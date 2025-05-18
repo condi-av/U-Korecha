@@ -236,12 +236,80 @@ document.addEventListener('DOMContentLoaded', function() {
             showNotification('Корзина пуста!', 'error');
             return;
         }
-        orderModal.style.display = 'block';
+        
+        // Создаем модальное окно с информацией о доставке
+        const deliveryInfo = document.createElement('div');
+        deliveryInfo.className = 'delivery-info-modal';
+        deliveryInfo.innerHTML = `
+            <div class="delivery-info-content">
+                <h3>Информация о доставке</h3>
+                <p>Доставка в пределах городка: 100 руб.</p>
+                <button onclick="this.closest('.delivery-info-modal').remove(); document.getElementById('order-modal').style.display='block'">
+                    Продолжить оформление
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(deliveryInfo);
     };
 
     window.closeModal = function() {
         orderModal.style.display = 'none';
     };
+
+    // Добавляем стили для окна доставки
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Стили для окна информации о доставке */
+        .delivery-info-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2001;
+        }
+
+        .delivery-info-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .delivery-info-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .delivery-info-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .delivery-info-content button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .delivery-info-content button:hover {
+            background: var(--primary-dark);
+        }
+    `;
+    document.head.appendChild(style);
 
     // Инициализация
     function init() {
