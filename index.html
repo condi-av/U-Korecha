@@ -4,561 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=yes">
-    <title>Пицца у Кореша😎</title>
+    <title>Пицца у Кореша😎 | Пиццы</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="notification" id="notification"></div>
-
-<header class="header">
-    <div class="header-container">
-        <div class="logo-container">
-            <div class="logo">У К<span class="logo-smiley">😎</span>решА</div>
-            <div class="slogan">Настоящая итальянская пицца</div>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">У К<span class="logo-smiley">😎</span>решА</div>
+                <div class="slogan">Настоящая итальянская пицца</div>
+            </div>
+            
+            <div class="location">
+                <span class="chudo-pizza">ЧУДО-ПИЦЦА</span>
+                <span class="town">пгт. Озёрный</span>
+            </div>
+            
+            <div class="header-actions">
+                <a href="tel:+79301678326" class="phone-link">
+                    <img src="icons/phone.svg" alt="Телефон" class="icon">
+                    <span class="phone-number">+7 930 167-83-26</span>
+                </a>
+            </div>
         </div>
-        <div class="header-actions">
-            <a href="tel:+79301678326" class="phone-link">
-                <i class="fas fa-phone-alt"></i>
-                <span class="phone-number">+7 930 167-83-26</span>
-            </a>
+    </header>
+
+    <nav class="menu-category">
+        <button data-category="pizza" class="active">Пицца</button>
+        <button onclick="location.href='vegan.html'">Веганская</button>
+        <button onclick="location.href='drinks.html'">Напитки и Снеки</button>
+    </nav>
+
+    <div class="product-list" id="product-list">
+        <!-- ОХОТА -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/hunting.svg" alt="Охота" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ОХОТА</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★☆ 4.8</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
+                        <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Охотничьи колбаски, помидоры, лук, сыр и зелень.
+            </div>
+            <button class="add-to-cart" data-id="11" data-name="ОХОТА" data-price="520">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- МАРГАРИТА -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/margarita.svg" alt="Маргарита" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>МАРГАРИТА</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.7</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="390">30 см (390₽)</button>
+                        <button class="size-btn" data-size="40" data-price="640">40 см (640₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Помидоры, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="12" data-name="МАРГАРИТА" data-price="390">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- ПЕППЕРОНИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/pepperoni.svg" alt="Пепперони" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ПЕППЕРОНИ</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★★ 4.9</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
+                        <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Острые колбаски, маслины, оливки, помидоры.
+            </div>
+            <button class="add-to-cart" data-id="13" data-name="ПЕППЕРОНИ" data-price="520">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- КОПЧЕНОСТЯМИ И ГРИБАМИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/smoked-mushrooms.svg" alt="Копчености и грибы" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>КОПЧЕНОСТЯМИ И ГРИБАМИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.4</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="550">30 см (550₽)</button>
+                        <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Копчёная колбаса, грибы, помидоры, перец, лук, сыр.
+            </div>
+            <button class="add-to-cart" data-id="16" data-name="КОПЧЕНОСТЯМИ И ГРИБАМИ" data-price="550">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- МЯСНАЯ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/meat.svg" alt="Мясная" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>МЯСНАЯ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.3</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="630">30 см (630₽)</button>
+                        <button class="size-btn" data-size="40" data-price="850">40 см (850₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Свинина, курица, помидоры, соленые огурцы, лук, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="17" data-name="МЯСНАЯ" data-price="630">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- ВЕТЧИНОЙ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/ham.svg" alt="Ветчиной" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ВЕТЧИНОЙ</h3>
+                        <span class="popular-badge">🔥</span>
+                    </div>
+                    <div class="rating">★★★★☆ 4.7</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="500">30 см (500₽)</button>
+                        <button class="size-btn" data-size="40" data-price="710">40 см (710₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Ветчина, помидоры, соленые огурцы, лук, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="19" data-name="ВЕТЧИНОЙ" data-price="500">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- С КОПЧЕНОСТЯМИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/smoked.svg" alt="С копченостями" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>С КОПЧЕНОСТЯМИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.5</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="500">30 см (500₽)</button>
+                        <button class="size-btn" data-size="40" data-price="710">40 см (710₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Копчёная колбаса, соленые огурцы, помидоры и сыр.
+            </div>
+            <button class="add-to-cart" data-id="20" data-name="С КОПЧЕНОСТЯМИ" data-price="500">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- С КУРИЦЕЙ И КОПЧЕНОСТЯМИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/chicken-smoked.svg" alt="С курицей и копченостями" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>С КУРИЦЕЙ И КОПЧЕНОСТЯМИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.6</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="600">30 см (600₽)</button>
+                        <button class="size-btn" data-size="40" data-price="830">40 см (830₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Копчёная колбаса, курица, помидоры, лук, сыр и зелень.
+            </div>
+            <button class="add-to-cart" data-id="14" data-name="С КУРИЦЕЙ И КОПЧЕНОСТЯМИ" data-price="600">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- АССОРТИ -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/assorted.svg" alt="Ассорти" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>АССОРТИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.5</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="570">30 см (570₽)</button>
+                        <button class="size-btn" data-size="40" data-price="790">40 см (790₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Копченая колбаса, грибы, ветчина, помидоры, перец болгарский, лук, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="15" data-name="АССОРТИ" data-price="570">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- Двойной сыр -->
+        <div class="product-card" data-category="pizza">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/double-cheese.svg" alt="Двойной сыр" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>Двойной сыр</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.6</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="100">30 см (100₽)</button>
+                        <button class="size-btn" data-size="40" data-price="150">40 см (150₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Двойная порция сыра.
+            </div>
+            <button class="add-to-cart" data-id="18" data-name="Двойной сыр" data-price="100">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
         </div>
     </div>
-</header>
-
-<nav class="menu-category">
-    <button data-category="pizza" class="active">Пицца</button>
-    <button data-category="drinks">Напитки</button>
-</nav>
-
-<div class="product-list" id="product-list">
-    <!-- Пиццы -->
-    <!-- ОХОТА -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>ОХОТА</h3>
-                    <span class="popular-badge">🔥</span>
-                </div>
-                <div class="rating">★★★★☆ 4.8</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
-                    <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Охотничьи колбаски, помидоры, лук, сыр и зелень.
-        </div>
-        <button class="add-to-cart" data-id="11" data-name="ОХОТА" data-price="520">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- МАРГАРИТА -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>МАРГАРИТА</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.7</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="390">30 см (390₽)</button>
-                    <button class="size-btn" data-size="40" data-price="640">40 см (640₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Помидоры, сыр, зелень.
-        </div>
-        <button class="add-to-cart" data-id="12" data-name="МАРГАРИТА" data-price="390">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- ПЕППЕРОНИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>ПЕППЕРОНИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.6</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="520">30 см (520₽)</button>
-                    <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Острые колбаски, маслины, оливки, помидоры.
-        </div>
-        <button class="add-to-cart" data-id="13" data-name="ПЕППЕРОНИ" data-price="520">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- КОПЧЁНОСТИ И ГРИБЫ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>КОПЧЁНОСТИ И ГРИБЫ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.5</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="550">30 см (550₽)</button>
-                    <button class="size-btn" data-size="40" data-price="780">40 см (780₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Копчёные колбаски, болгарский перец, помидоры, лук, сыр и зелень.
-        </div>
-        <button class="add-to-cart" data-id="14" data-name="КОПЧЁНОСТИ И ГРИБЫ" data-price="550">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- МЯСНАЯ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>МЯСНАЯ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.9</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="630">30 см (630₽)</button>
-                    <button class="size-btn" data-size="40" data-price="850">40 см (850₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Бекон, курица, колбаса, ветчина, острые огурцы, лук, сыр, зелень.
-        </div>
-        <button class="add-to-cart" data-id="15" data-name="МЯСНАЯ" data-price="630">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С ВЕТЧИНОЙ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С ВЕТЧИНОЙ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.4</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="500">30 см (500₽)</button>
-                    <button class="size-btn" data-size="40" data-price="710">40 см (710₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Ветчина, помидоры, соленые огурцы, сыр.
-        </div>
-        <button class="add-to-cart" data-id="16" data-name="С ВЕТЧИНОЙ" data-price="500">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С КОПЧЁНОСТЯМИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С КОПЧЁНОСТЯМИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.3</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="500">30 см (500₽)</button>
-                    <button class="size-btn" data-size="40" data-price="710">40 см (710₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Копчёная колбаса, соленые огурцы, помидоры, сыр.
-        </div>
-        <button class="add-to-cart" data-id="17" data-name="С КОПЧЁНОСТЯМИ" data-price="500">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С КУРицей И КОПЧЁНОСТЯМИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С КУРицей И КОПЧЁНОСТЯМИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.5</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="600">30 см (600₽)</button>
-                    <button class="size-btn" data-size="40" data-price="830">40 см (830₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Копчёная колбаса, курица, помидоры, лук, сыр, зелень.
-        </div>
-        <button class="add-to-cart" data-id="18" data-name="С КУРицей И КОПЧЁНОСТЯМИ" data-price="600">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- МЕГА АССОРТИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>МЕГА АССОРТИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.7</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="700">30 см (700₽)</button>
-                    <button class="size-btn" data-size="40" data-price="930">40 см (930₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Свинина, ветчина, колбаса, курица, помидоры, сыр.
-        </div>
-        <button class="add-to-cart" data-id="19" data-name="МЕГА АССОРТИ" data-price="700">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С ГРИБАМИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С ГРИБАМИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.6</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="530">30 см (530₽)</button>
-                    <button class="size-btn" data-size="40" data-price="750">40 см (750₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Курица, ветчина, помидоры, лук, сыр, зелень.
-        </div>
-        <button class="add-to-cart" data-id="20" data-name="С ГРИБАМИ" data-price="530">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С КУРицей -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С КУРицей</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.6</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="600">30 см (600₽)</button>
-                    <button class="size-btn" data-size="40" data-price="820">40 см (820₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Курица, соленые огурцы, перец, зелень, сыр.
-        </div>
-        <button class="add-to-cart" data-id="21" data-name="С КУРицей" data-price="600">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С КУРицей И ГРИБАМИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С КУРицей И ГРИБАМИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.5</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="570">30 см (570₽)</button>
-                    <button class="size-btn" data-size="40" data-price="800">40 см (800₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Курица, помидоры, грибы, сыр, зелень.
-        </div>
-        <button class="add-to-cart" data-id="22" data-name="С КУРицей И ГРИБАМИ" data-price="570">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- ОВОЩНАЯ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>ОВОЩНАЯ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.3</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="450">30 см (450₽)</button>
-                    <button class="size-btn" data-size="40" data-price="670">40 см (670₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Помидоры, соленые огурцы, перец, зелень, сыр.
-        </div>
-        <button class="add-to-cart" data-id="23" data-name="ОВОЩНАЯ" data-price="450">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- АССОРТИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>АССОРТИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.7</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="550">30 см (550₽)</button>
-                    <button class="size-btn" data-size="40" data-price="790">40 см (790₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Копчёная колбаса, ветчина, сыр, помидоры, перец, лук, зелень.
-        </div>
-        <button class="add-to-cart" data-id="24" data-name="АССОРТИ" data-price="550">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- С КУРицей И АНАНАСАМИ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>С КУРицей И АНАНАСАМИ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.8</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="620">30 см (620₽)</button>
-                    <button class="size-btn" data-size="40" data-price="830">40 см (830₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Курица, помидоры, сыр, зелень, ананас.
-        </div>
-        <button class="add-to-cart" data-id="25" data-name="С КУРицей И АНАНАСАМИ" data-price="620">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- СЫРНАЯ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>СЫРНАЯ</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.6</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="390">30 см (390₽)</button>
-                    <button class="size-btn" data-size="40" data-price="640">40 см (640₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Сыр, сыр, сыр и зелень.
-        </div>
-        <button class="add-to-cart" data-id="26" data-name="СЫРНАЯ" data-price="390">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- ФИРМЕННАЯ -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>ФИРМЕННАЯ</h3>
-                </div>
-                <div class="rating">★★★★☆ 5.0</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="700">30 см (700₽)</button>
-                    <button class="size-btn" data-size="40" data-price="930">40 см (930₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Копчёная колбаса, курица, соленые огурцы, помидоры, перец, грибы, сыр, соус.
-        </div>
-        <button class="add-to-cart" data-id="27" data-name="ФИРМЕННАЯ" data-price="700">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- 4 СЫРА -->
-    <div class="product-card" data-category="pizza">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-drumstick-bite"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>4 СЫРА</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.9</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="30" data-price="550">30 см (550₽)</button>
-                    <button class="size-btn" data-size="40" data-price="750">40 см (750₽)</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Состав:</strong> Сыр, сыр, сыр, сыр и зелень.
-        </div>
-        <button class="add-to-cart" data-id="28" data-name="4 СЫРА" data-price="550">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <!-- Напитки -->
-    <div class="product-card" data-category="drinks">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-coffee"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>Американо</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.5</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="regular" data-price="120">120₽</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Описание:</strong> Классический кофе Американо.
-        </div>
-        <button class="add-to-cart" data-id="100" data-name="Американо" data-price="120">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <div class="product-card" data-category="drinks">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-coffee"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>Капучино</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.6</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="regular" data-price="130">130₽</button>
-                    <button class="size-btn" data-size="large" data-price="150">150₽</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Описание:</strong> Классический капучино с пенкой.
-        </div>
-        <button class="add-to-cart" data-id="101" data-name="Капучино" data-price="130">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-
-    <div class="product-card" data-category="drinks">
-        <div class="product-header">
-            <div class="product-icon" style="color: #E67E22">
-                <i class="fas fa-coffee"></i>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                    <h3>Латте</h3>
-                </div>
-                <div class="rating">★★★★☆ 4.7</div>
-                <div class="size-selector">
-                    <button class="size-btn active" data-size="regular" data-price="130">130₽</button>
-                    <button class="size-btn" data-size="large" data-price="150">150₽</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-ingredients">
-            <strong>Описание:</strong> Молочный кофе с лёгкой пенкой.
-        </div>
-        <button class="add-to-cart" data-id="102" data-name="Латте" data-price="130">
-            <i class="fas fa-plus"></i> В корзину
-        </button>
-    </div>
-  </div>
-
 
     <!-- Корзина -->
     <div class="cart-sidebar" id="cart-sidebar">
@@ -573,66 +307,51 @@
                 <span id="cart-total-price">0 ₽</span>
             </div>
             <button class="checkout-btn" onclick="checkout()">
-                <i class="fas fa-paper-plane"></i> Оформить заказ
+                <img src="icons/send.svg" alt="Отправить" class="icon"> Оформить заказ
             </button>
         </div>
     </div>
 
-    <!-- Кнопка корзины -->
-<button class="theme-btn" id="theme-toggle">
-    <i class="fas fa-moon"></i>
-</button>
+    <!-- Кнопка темы -->
+    <button class="theme-btn" id="theme-toggle">
+        <img src="icons/moon.svg" alt="Тема" class="icon" id="theme-icon">
+    </button>
     
-        <button class="cart-btn" onclick="toggleCart()">
-        <i class="fas fa-shopping-cart"></i>
+    <!-- Кнопка корзины -->
+    <button class="cart-btn" onclick="toggleCart()">
+        <img src="icons/cart.svg" alt="Корзина" class="icon">
         <span id="cart-count">0</span>
     </button>
+
     <!-- Модальное окно оформления заказа -->
-<div class="modal" id="order-modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Оформление заказа</h2>
-        <form id="order-form" onsubmit="submitOrder(event)">
-            <div class="form-group">
-                <label>ФИО:</label>
-                <input type="text" id="name" required placeholder="Иванов Иван Иванович">
-            </div>
-            <div class="form-group">
-                <label>Телефон:</label>
-                <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67" pattern="\+7\s?[0-9]{10}">
-            </div>
-            <div class="form-group">
-                <label>Адрес доставки:</label>
-                <textarea id="address" required placeholder="ул. Примерная, д. 1, кв. 2"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Комментарий:</label>
-                <textarea id="comment" placeholder="Дополнительные пожелания..."></textarea>
-            </div>
-            <button type="submit" class="checkout-btn">
-                <i class="fas fa-paper-plane"></i> Отправить заказ
-            </button>
-        </form>
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Оформление заказа</h2>
+            <form id="order-form" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>ФИО:</label>
+                    <input type="text" id="name" required placeholder="Иванов Иван Иванович">
+                </div>
+                <div class="form-group">
+                    <label>Телефон:</label>
+                    <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67" pattern="\+7\s?[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>Адрес доставки:</label>
+                    <textarea id="address" required placeholder="ул. Примерная, д. 1, кв. 2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Комментарий:</label>
+                    <textarea id="comment" placeholder="Дополнительные пожелания..."></textarea>
+                </div>
+                <button type="submit" class="checkout-btn">
+                    <img src="icons/send.svg" alt="Отправить" class="icon"> Отправить заказ
+                </button>
+            </form>
+        </div>
     </div>
-</div>
-     <script>
-document.querySelectorAll('.menu-category button').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Удаляем active у всех кнопок
-        document.querySelectorAll('.menu-category button').forEach(b => b.classList.remove('active'));
-        
-        // Добавляем active текущей кнопке
-        this.classList.add('active');
-        
-        // Фильтруем продукты
-        const category = this.dataset.category;
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.style.display = card.dataset.category === category ? 'block' : 'none';
-        });
-    });
-});
-</script>
-    
+
     <script src="app.js"></script>
 </body>
 </html>
