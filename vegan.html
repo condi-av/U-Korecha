@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=yes">
+    <title>Пицца у Кореша😎 | Веганская</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">У К<span class="logo-smiley">😎</span>решА</div>
+                <div class="slogan">Настоящая итальянская пицца</div>
+            </div>
+            
+            <div class="location">
+                <span class="chudo-pizza">ЧУДО-ПИЦЦА</span>
+                <span class="town">пгт. Озёрный</span>
+            </div>
+            
+            <div class="header-actions">
+                <a href="tel:+79301678326" class="phone-link">
+                    <img src="icons/phone.svg" alt="Телефон" class="icon">
+                    <span class="phone-number">+7 930 167-83-26</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="menu-category">
+        <button onclick="location.href='index.html'">Пицца</button>
+        <button class="active">Веганская</button>
+        <button onclick="location.href='drinks.html'">Напитки и Снеки</button>
+    </nav>
+
+    <div class="product-list" id="product-list">
+        <!-- С ГРИБАМИ -->
+        <div class="product-card" data-category="vegan">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/mushrooms.svg" alt="С грибами" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>С ГРИБАМИ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.4</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="530">30 см (530₽)</button>
+                        <button class="size-btn" data-size="40" data-price="750">40 см (750₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Грибы, помидоры, лук, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="21" data-name="С ГРИБАМИ" data-price="530">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- ОВОЩНАЯ -->
+        <div class="product-card" data-category="vegan">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/vegetable.svg" alt="Овощная" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>ОВОЩНАЯ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.2</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="450">30 см (450₽)</button>
+                        <button class="size-btn" data-size="40" data-price="670">40 см (670₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Помидоры, соленые огурцы, перец болгарский, лук, грибы, сыр, зелень.
+            </div>
+            <button class="add-to-cart" data-id="24" data-name="ОВОЩНАЯ" data-price="450">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- СЫРНАЯ -->
+        <div class="product-card" data-category="vegan">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/cheese.svg" alt="Сырная" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>СЫРНАЯ</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.3</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="390">30 см (390₽)</button>
+                        <button class="size-btn" data-size="40" data-price="640">40 см (640₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Сыр, сыр, сыр и зелень.
+            </div>
+            <button class="add-to-cart" data-id="27" data-name="СЫРНАЯ" data-price="390">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+
+        <!-- 4 СЫРА -->
+        <div class="product-card" data-category="vegan">
+            <div class="product-header">
+                <div class="product-icon">
+                    <img src="icons/four-cheese.svg" alt="4 сыра" class="product-image">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">
+                        <h3>4 СЫРА</h3>
+                    </div>
+                    <div class="rating">★★★★☆ 4.5</div>
+                    <div class="size-selector">
+                        <button class="size-btn active" data-size="30" data-price="550">30 см (550₽)</button>
+                        <button class="size-btn" data-size="40" data-price="750">40 см (750₽)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-ingredients">
+                <strong>Состав:</strong> Сыр, сыр, сыр, сыр и зелень.
+            </div>
+            <button class="add-to-cart" data-id="28" data-name="4 СЫРА" data-price="550">
+                <img src="icons/plus.svg" alt="Добавить" class="icon"> В корзину
+            </button>
+        </div>
+    </div>
+
+    <!-- Корзина -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Ваша корзина</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-content" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cart-total-price">0 ₽</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <img src="icons/send.svg" alt="Отправить" class="icon"> Оформить заказ
+            </button>
+        </div>
+    </div>
+
+    <!-- Кнопка темы -->
+    <button class="theme-btn" id="theme-toggle">
+        <img src="icons/moon.svg" alt="Тема" class="icon" id="theme-icon">
+    </button>
+    
+    <!-- Кнопка корзины -->
+    <button class="cart-btn" onclick="toggleCart()">
+        <img src="icons/cart.svg" alt="Корзина" class="icon">
+        <span id="cart-count">0</span>
+    </button>
+
+    <!-- Модальное окно оформления заказа -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Оформление заказа</h2>
+            <form id="order-form" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>ФИО:</label>
+                    <input type="text" id="name" required placeholder="Иванов Иван Иванович">
+                </div>
+                <div class="form-group">
+                    <label>Телефон:</label>
+                    <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67" pattern="\+7\s?[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>Адрес доставки:</label>
+                    <textarea id="address" required placeholder="ул. Примерная, д. 1, кв. 2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Комментарий:</label>
+                    <textarea id="comment" placeholder="Дополнительные пожелания..."></textarea>
+                </div>
+                <button type="submit" class="checkout-btn">
+                    <img src="icons/send.svg" alt="Отправить" class="icon"> Отправить заказ
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
